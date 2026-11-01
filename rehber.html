@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 <style>
-.flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }
+.flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; margin: 18px 0; }
 .flow div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-size: 14.5px; position: relative; }
 .flow b { display: block; color: var(--navy-deep); margin-bottom: 4px; }
-.flow div:not(:last-child)::after { content: "→"; position: absolute; right: -10px; top: 50%; transform: translate(50%, -50%); color: var(--red); font-weight: 700; }
+.flow div:not(:last-child)::after { content: "→"; z-index: 1; position: absolute; right: -11px; top: 50%; transform: translate(50%, -50%); color: var(--red); font-weight: 700; }
 .modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .modes div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
 .modes h3 { margin: 0 0 4px; }
