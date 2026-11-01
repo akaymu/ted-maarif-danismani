@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maarif Danışmanı Atölyesi</title>
+<meta name="description" content="TED Bodrum Koleji fen bilimleri öğretmenleri için Gemini ile Maarif Modeli danışmanı ve çalışma kâğıdı üretimi.">
+<link rel="icon" href="assets/amblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.hero { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; margin-top: 36px; }
+.hero .qr { text-align: center; font-size: 13px; color: var(--muted); }
+.hero .qr img { width: 150px; height: 150px; display: block; background: #fff; padding: 6px; border-radius: 8px; border: 1px solid var(--line); }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 32px; }
+.card { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; text-decoration: none; color: var(--fg); }
+.card:hover, .card:focus-visible { border-color: var(--navy); }
+.card .who { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--red); font-weight: 600; }
+.card h2 { font-size: 20px; margin: 4px 0 6px; }
+.card p { margin: 0; color: var(--muted); font-size: 15px; }
+.cta { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+@media (max-width: 620px) { .hero { grid-template-columns: 1fr; } .hero .qr { display: none; } .cards { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="in">
+  <img src="assets/amblem.png" alt="">
+  <a class="brand" href="./" aria-current="page">Maarif Danışmanı</a>
+  <nav aria-label="Sayfalar"><a href="rehber.html">Rehber</a><a href="ogretmen.html">Öğretmen</a><a href="sunucu.html">Sunucu</a><a href="sunum.html">Sunum</a></nav>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">TED Bodrum Koleji · Fen Bilimleri · Atölye</p>
+      <h1>Gemini ile Maarif Modeli danışmanı</h1>
+      <p class="lead">Öğretim programına dayalı sorularınızı yanıtlayan ve istediğiniz etkinliği okulun şablonunda, indirmeye hazır Word dosyası olarak veren tek bir Gemini Gem'i.</p>
+      <div class="cta">
+        <a class="btn" href="https://gemini.google.com/gem/1J91IW7ghV2cMqy8UDze6Suy1BwKjvmki?usp=sharing" target="_blank" rel="noopener">Gem'i aç</a>
+        <span class="lead" style="font-size:14px">Google AI Pro hesabı gerekir.</span>
+      </div>
+    </div>
+    <div class="qr"><img src="assets/qr.svg" alt="Bu sitenin QR kodu">Bu sayfayı paylaşın</div>
+  </section>
+
+  <div class="cards">
+    <a class="card" href="ogretmen.html"><span class="who">Öğretmen</span><h2>Öğretmen talimatı</h2><p>Gem'i açma, soru sorma, çalışma kâğıdı isteme ve kontrol etme. Tek sayfa.</p></a>
+    <a class="card" href="rehber.html"><span class="who">Herkes</span><h2>Rehber</h2><p>Sistem nasıl çalışıyor, neyi bilir, neyi bilmez, neden Pro gerekir.</p></a>
+    <a class="card" href="sunucu.html"><span class="who">Sunucu</span><h2>Sunucu talimatı</h2><p>2 saatlik atölyenin akışı, hazırlık listesi, demo istekleri ve sorun giderme.</p></a>
+    <a class="card" href="sunum.html"><span class="who">Atölye</span><h2>Sunum</h2><p>Atölyede yansıtılacak slaytlar. Ok tuşlarıyla ilerler, F ile tam ekran.</p></a>
+  </div>
+
+  <footer class="site">Kaynak belgeler: Türkiye Yüzyılı Maarif Modeli Öğretim Programları Ortak Metni; Fen Bilimleri Dersi Öğretim Programı (3–8. sınıflar); TED Bodrum Koleji Y/S Prosedür Şablonu.</footer>
+</main>
+</body>
+</html>

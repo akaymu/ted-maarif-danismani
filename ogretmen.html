@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Öğretmen Talimatı · Maarif Danışmanı</title>
+<link rel="icon" href="assets/amblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="topbar"><div class="in">
+  <img src="assets/amblem.png" alt="">
+  <a class="brand" href="./">Maarif Danışmanı</a>
+  <nav aria-label="Sayfalar"><a href="rehber.html">Rehber</a><a href="ogretmen.html" aria-current="page">Öğretmen</a><a href="sunucu.html">Sunucu</a><a href="sunum.html">Sunum</a></nav>
+</div></header>
+
+<main class="wrap">
+  <p class="eyebrow">Öğretmen talimatı</p>
+  <h1>Beş adımda Maarif Danışmanı</h1>
+  <p class="lead">Belge yüklemenize gerek yok. Program, Ortak Metin ve okulun şablonu Gem'in içinde.</p>
+
+  <h2>1. Gem'i açın</h2>
+  <ol class="steps">
+    <li>Bilgisayarda <strong>Google AI Pro</strong> hesabınızla giriş yapın. Gemini'da hesap adınızın altında "Pro" yazmalı.</li>
+    <li><a class="btn" href="https://gemini.google.com/gem/1J91IW7ghV2cMqy8UDze6Suy1BwKjvmki?usp=sharing" target="_blank" rel="noopener">Maarif Danışmanı – Fen Bilimleri</a></li>
+    <li>Mesaj kutusunun altındaki model seçicide <strong>Pro</strong>'yu seçin. Her yeni sohbette kontrol edin.</li>
+  </ol>
+
+  <h2>2. Programla ilgili sorun</h2>
+  <p>Kısa kod yazabilirsiniz: <code>5.3.2</code>, <code>FB.5.3.2.</code> olarak anlaşılır. Aynı sohbette devam ederseniz "bu çıktı" dediğinizde önceki çıktı anlaşılır.</p>
+  <div class="prompt"><q>5.3.2 numaralı öğrenme çıktısı için ölçülebilir öğrenci performanslarını ve anahtar kelimeleri listeler misin?</q><button class="copy" type="button">Kopyala</button></div>
+  <div class="prompt"><q>Bu öğrenme çıktısı için MEB kaç ders saati ve hangi öğrenme yaşantılarını öneriyor?</q><button class="copy" type="button">Kopyala</button></div>
+  <div class="prompt"><q>Bu çıktı için 2 ders saatlik bir ders planı hazırla. Sınıfımda 24 öğrenci var, laboratuvar var.</q><button class="copy" type="button">Kopyala</button></div>
+  <div class="prompt"><q>Aşağıdaki etkinliğimi programa uygunluk açısından kontrol et: [etkinliği yapıştırın]</q><button class="copy" type="button">Kopyala</button></div>
+  <div class="note"><p>Programda ders saati <u>ünite</u> düzeyinde verilir. Gem çıktıya düşen süreyi "[Genel öneri]" etiketiyle önerir; o kısım programdan değil, Gem'in kendi önerisidir.</p></div>
+
+  <h2>3. Çalışma kâğıdı isteyin</h2>
+  <p>Yeni bir sohbet açın ve tek mesajda şunları yazın: <strong>öğrenme çıktısı, ders saati, sınıf/şube, dönem ve hafta, toplam puan, elinizdeki malzemeler</strong>.</p>
+  <div class="prompt"><q>FB.7.4.2 için 2 ders saatlik çalışma kâğıdı hazırla. Sınıf 7/A-C, 2. dönem 8. hafta, toplam 50 puan, 2025-2026 eğitim öğretim yılı. Laboratuvarda ince ve kalın kenarlı mercekler, el feneri ve beyaz karton var.</q><button class="copy" type="button">Kopyala</button></div>
+  <p>Yaklaşık 1–3 dakika sürer. Yanıtta bir <strong>DOCX dosya kartı</strong> ve bir <strong>Öğretmen Notu</strong> gelir.</p>
+
+  <h2>4. İndirin</h2>
+  <ol class="steps">
+    <li>Dosya kartını açın ve sağ üstteki <strong>İndir</strong> simgesine tıklayın. Google Dokümanlar'da açmak için <strong>Drive'a aktar</strong> seçeneğini kullanın.</li>
+    <li>Dosya kartı çıkmazsa aynı sohbette şunu yazın: <q>.docx dosyası olarak ver.</q></li>
+    <li>Öğretmen Notu (cevap anahtarı, kodlar, puanlama) sohbette kalır, öğrenciye verilmez.</li>
+  </ol>
+  <figure>
+    <img src="assets/ornek-calisma-kagidi.jpg" width="670" height="612" alt="Gem'in ürettiği örnek çalışma kâğıdı: TED Bodrum Koleji logosu, başlık, künye tablosu, gözlem amacı, malzemeler ve ilk soru ile cevap kutusu">
+    <figcaption>Örnek: FB.7.4.2 için üretilen dosyanın ilk sayfası. Logo, künye, yazı tipi ve kutu boyutları her dosyada aynı.</figcaption>
+  </figure>
+
+  <h2>5. Yazdırmadan önce kontrol edin</h2>
+  <ul class="check">
+    <li>Öğrenme çıktısı kodu ve süreç bileşenleri programla aynı mı?</li>
+    <li>Sorular sınıf düzeyine ve programdaki sınırlılıklara uyuyor mu?</li>
+    <li>Tablo başlıkları ve kutular yönergelerle eşleşiyor mu?</li>
+    <li>Puanlar mantıklı dağılmış mı?</li>
+    <li>Değişken bilinçli olarak değiştirilip ölçülmüyorsa çalışmaya "deney" değil "bilimsel gözlem" denmiş mi?</li>
+  </ul>
+
+  <h2>Unutmayın</h2>
+  <ol class="steps">
+    <li><strong>Öğrenci bilgisi yazmayın.</strong> Ad, not veya sağlık bilgisi girmeyin. "2 kaynaştırma öğrencisi var" demek yeterli.</li>
+    <li><strong>Konu değişince yeni sohbet açın.</strong> Belgeler her sohbette hazırdır.</li>
+    <li><strong>Pro olmayan hesapta çalışmaz.</strong> Şablon tutmaz ve önceki soru unutulur.</li>
+  </ol>
+
+  <footer class="site"><a href="./">Ana sayfa</a> · <a href="rehber.html">Ayrıntılı rehber</a></footer>
+</main>
+<script src="assets/copy.js"></script>
+</body>
+</html>

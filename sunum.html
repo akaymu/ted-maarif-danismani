@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sunum · Maarif Danışmanı Atölyesi</title>
+<link rel="icon" href="assets/amblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
+<style>
+/* Projeksiyon için tek (açık) tema bilinçli seçildi. 1280x720 sahne, pencereye ölçeklenir. */
+:root { --navy: #0b4a8f; --deep: #0b2f5e; --red: #d7261e; --ink: #15213a; --muted: #55617a; --line: #d8deea; --soft: #eef2f9; --paper: #ffffff; --stage-bg: #1b2333;
+  --display: "Literata", Georgia, serif; --body: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace; color-scheme: light; }
+html, body { margin: 0; height: 100%; background: var(--stage-bg); overflow: hidden; }
+#stage { position: absolute; left: 50%; top: 50%; width: 1280px; height: 720px; transform-origin: center; font: 26px/1.45 var(--body); color: var(--ink); }
+.slide { position: absolute; inset: 0; background: var(--paper); padding: 92px 80px 56px; box-sizing: border-box; display: none; flex-direction: column; }
+.slide.on { display: flex; }
+.slide::before { content: ""; position: absolute; left: 80px; right: 80px; top: 64px; height: 3px; background: var(--red); }
+.brand { position: absolute; left: 80px; top: 18px; display: flex; align-items: center; gap: 12px; font: 600 17px var(--body); color: var(--deep); letter-spacing: .02em; }
+.brand img { height: 36px; }
+.pg { position: absolute; right: 80px; top: 26px; font: 500 16px var(--body); color: var(--muted); font-variant-numeric: tabular-nums; }
+h1, h2 { font-family: var(--display); color: var(--deep); margin: 0 0 22px; line-height: 1.15; text-wrap: balance; }
+h1 { font-size: 64px; }
+h2 { font-size: 46px; }
+.kicker { font: 600 18px var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin: 0 0 10px; }
+p { margin: 0 0 14px; }
+ul, ol { margin: 0; padding-left: 1.2em; display: grid; gap: 12px; }
+li::marker { color: var(--navy); font-weight: 600; }
+.muted { color: var(--muted); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
+.box { background: var(--soft); border-radius: 12px; padding: 22px 26px; }
+.box h3 { margin: 0 0 8px; font-size: 26px; color: var(--deep); }
+.prompt { font: 22px/1.5 var(--mono); background: var(--soft); border-left: 5px solid var(--navy); padding: 16px 22px; border-radius: 6px; margin: 0 0 16px; }
+table { border-collapse: collapse; width: 100%; font-size: 22px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 2px solid var(--line); vertical-align: top; }
+th { font-size: 16px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+td.t { font-weight: 600; color: var(--navy); white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr.hands td { background: var(--soft); }
+.yes { color: #1f7a4a; font-weight: 600; } .no { color: var(--red); font-weight: 600; }
+.timer { display: inline-block; font: 600 22px var(--body); color: #fff; background: var(--navy); border-radius: 999px; padding: 4px 16px; margin-bottom: 16px; }
+.big { font: 700 88px var(--display); color: var(--deep); }
+.flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 10px; }
+.flow div { background: var(--soft); border-radius: 12px; padding: 18px; font-size: 21px; position: relative; }
+.flow b { display: block; font-size: 23px; color: var(--deep); margin-bottom: 6px; }
+.flow div:not(:last-child)::after { content: "→"; position: absolute; right: -16px; top: 50%; transform: translate(50%, -50%); color: var(--red); font-weight: 700; font-size: 28px; }
+/* Kapak */
+.cover { flex-direction: row !important; align-items: center; gap: 56px; }
+.cover .txt { flex: 1; }
+.cover .qr { text-align: center; }
+.cover .qr img { width: 300px; height: 300px; display: block; border: 1px solid var(--line); border-radius: 12px; padding: 10px; background: #fff; }
+.cover .url { font: 500 19px var(--mono); color: var(--navy); margin-top: 12px; }
+.ws img { height: 470px; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 6px 24px rgba(11,47,94,.12); }
+/* Kontroller */
+#bar { position: fixed; left: 0; bottom: 0; height: 4px; background: var(--red); transition: width .2s; }
+#hint { position: fixed; right: 14px; bottom: 10px; font: 13px var(--body); color: #9aa7bf; }
+#nav { position: fixed; inset: 0; display: grid; grid-template-columns: 1fr 2fr; }
+#nav button { background: transparent; border: 0; cursor: pointer; }
+#nav button:focus-visible { outline: 2px solid #9ec2ff; outline-offset: -6px; }
+@media (prefers-reduced-motion: reduce) { #bar { transition: none; } }
+@media print { html, body { overflow: visible; background: #fff; height: auto; } #stage { position: static; transform: none !important; } .slide { display: flex !important; position: relative; page-break-after: always; } #nav, #bar, #hint { display: none; } }
+</style>
+</head>
+<body>
+<div id="nav" aria-hidden="true"><button tabindex="-1" data-d="-1"></button><button tabindex="-1" data-d="1"></button></div>
+<main id="stage" aria-live="polite">
+
+<!-- 1 Kapak -->
+<section class="slide cover">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <div class="txt">
+    <p class="kicker">Fen Bilimleri · Öğretmen Atölyesi</p>
+    <h1>Gemini ile Maarif Modeli Danışmanı</h1>
+    <p class="muted" style="font-size:28px">Programa soru sorun. Çalışma kâğıdını okulun şablonunda, hazır alın.</p>
+  </div>
+  <div class="qr"><img src="assets/qr.svg" alt="Atölye sitesinin QR kodu"><div class="url">akaymu.github.io/ted-maarif-danismani</div><div class="muted" style="font-size:18px;margin-top:4px">Telefonunuzla okutun</div></div>
+</section>
+
+<!-- 2 Gündem -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <h2>Bugün ne yapacağız?</h2>
+  <table>
+    <tr><td class="t">0–10</td><td>Açılış ve siteye giriş</td></tr>
+    <tr><td class="t">10–25</td><td>Nasıl çalışıyor? Canlı demo: soru-cevap</td></tr>
+    <tr class="hands"><td class="t">25–40</td><td><b>Uygulama 1:</b> kendi öğrenme çıktınızı sorun</td></tr>
+    <tr><td class="t">40–55</td><td>Canlı demo: çalışma kâğıdı</td></tr>
+    <tr><td class="t">55–65</td><td>Ara</td></tr>
+    <tr class="hands"><td class="t">65–90</td><td><b>Uygulama 2:</b> kendi çalışma kâğıdınızı üretin</td></tr>
+    <tr><td class="t">90–105</td><td>Ders planı ve kontrol modları</td></tr>
+    <tr><td class="t">105–120</td><td>Paylaşım, sınırlar, kapanış</td></tr>
+  </table>
+</section>
+
+<!-- 3 Sorun -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <p class="kicker">Neden?</p>
+  <h2>Programla çalışmak zaman alıyor</h2>
+  <div class="grid2">
+    <div class="box"><h3>389 sayfa</h3><p>Ortak Metin ve Fen programı. Bir çıktının süreç bileşenlerine, sınırlılıklarına ve yaşantılarına her seferinde yeniden bakılıyor.</p></div>
+    <div class="box"><h3>Biçim işi</h3><p>Her çalışma kâğıdında logo, künye, kutu boyutları ve alt bilgi elle ayarlanıyor.</p></div>
+  </div>
+  <p style="margin-top:28px">Hedef: <b>programa soru sormak</b> ve <b>biçimle uğraşmadan çalışma kâğıdı almak</b>.</p>
+</section>
+
+<!-- 4 Çözüm -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <p class="kicker">Çözüm</p>
+  <h2>Tek bir Gem: Maarif Danışmanı</h2>
+  <p>Gem, kalıcı talimatı ve yüklü belgeleri olan özel bir Gemini sohbetidir. Belgeler bir kez yüklendi; siz yalnızca sorarsınız.</p>
+  <div class="flow">
+    <div><b>Siz</b>"5.3.2 için…"</div>
+    <div><b>Talimat</b>FB.5.3.2'yi tanır, 5. sınıf dosyasında arar</div>
+    <div><b>Belgeler</b>Program ve Ortak Metin'den birebir alıntı</div>
+    <div><b>Çıktı</b>Cevap ya da okul şablonunda .docx</div>
+  </div>
+</section>
+
+<!-- 5 İçinde ne var -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <h2>Gem'in içinde ne var?</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><b>Talimat:</b> önce belgede bul, kodu birebir yaz, kaynak göster, kendi önerini "[Genel öneri]" diye işaretle</li>
+        <li><b>Program:</b> genel bölüm ve 3–8. sınıflar ayrı dosyalarda</li>
+        <li><b>Ortak Metin:</b> beceriler, eğilimler, değerler</li>
+      </ul>
+    </div>
+    <div class="box"><h3>ws_olustur.py</h3><p>Çalışma kâğıdı üreticisi. Okulun şablonu içinde.</p><p class="muted" style="margin:0">Gemini yalnızca içeriği yazar. Logo, A4, künye, kutular ve puan toplamı kodla sabit.</p></div>
+  </div>
+</section>
+
+<!-- 6 Neden Pro -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <h2>Neden Google AI Pro?</h2>
+  <table>
+    <thead><tr><th>Test (31 Ekim 2026)</th><th>Pro</th><th>Pro olmayan</th></tr></thead>
+    <tr><td>Süreç bileşenleri, anahtar kavramlar</td><td class="yes">Doğru</td><td class="yes">Doğru</td></tr>
+    <tr><td>"Bu öğrenme çıktısı için…" takip sorusu</td><td class="yes">Hatırladı</td><td class="no">Unuttu</td></tr>
+    <tr><td>Okul şablonunda .docx</td><td class="yes">4 / 4</td><td class="no">Vermedi</td></tr>
+    <tr><td>FB.7.4.2 çalışma kâğıdı</td><td class="yes">Üretti</td><td class="no">Reddetti</td></tr>
+  </table>
+  <p style="margin-top:22px">Her sohbette model seçicide <b>Pro</b> seçili olmalı.</p>
+</section>
+
+<!-- 7 Demo 1 -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <p class="kicker">Canlı demo · Soru-cevap</p>
+  <h2>Programa soru sormak</h2>
+  <div class="prompt">5.3.2 numaralı öğrenme çıktısı için ölçülebilir öğrenci performanslarını ve anahtar kelimeleri listeler misin?</div>
+  <div class="prompt">Bu öğrenme çıktısı için MEB kaç ders saati ve hangi öğrenme yaşantılarını öneriyor?</div>
+  <p class="muted">İkinci soruda "bu öğrenme çıktısı" yeterli: Gem önceki soruyu hatırlar.</p>
+</section>
+
+<!-- 8 Terim eşleşmesi -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <h2>Sizin sorunuz, programın başlığı</h2>
+  <table>
+    <thead><tr><th>Siz sorarsınız</th><th>Gem programda şuna bakar</th></tr></thead>
+    <tr><td>Ölçülebilir performanslar</td><td>Süreç bileşenleri (a, b, c…)</td></tr>
+    <tr><td>Anahtar kelimeler</td><td>Ünitenin anahtar kavramları</td></tr>
+    <tr><td>Kaç ders saati</td><td>Ünite–süre tablosu <span class="muted">(çıktı bazında süre yok)</span></td></tr>
+    <tr><td>Öğrenme yaşantıları</td><td>Temel kabuller, köprü kurma, uygulamalar, farklılaştırma</td></tr>
+    <tr><td>Ölçme-değerlendirme</td><td>Öğrenme kanıtları</td></tr>
+  </table>
+</section>
+
+<!-- 9 Uygulama 1 -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <span class="timer">Uygulama 1 · 15 dakika</span>
+  <h2>Kendi öğrenme çıktınızı sorun</h2>
+  <ol>
+    <li>Sitede <b>Öğretmen</b> sayfası → <b>Gem'i aç</b></li>
+    <li>Model seçicide <b>Pro</b></li>
+    <li>Kendi çıktınız için sorun: süreç bileşenleri, anahtar kavramlar</li>
+    <li>Aynı sohbette: "Bu öğrenme çıktısı için kaç ders saati ve hangi yaşantılar?"</li>
+    <li>Bir kodu programdan kontrol edin</li>
+  </ol>
+</section>
+
+<!-- 10 Demo 2 -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <div class="grid2 ws" style="grid-template-columns: 1.1fr .9fr; gap: 40px">
+    <div>
+      <p class="kicker">Canlı demo · Çalışma kâğıdı</p>
+      <h2>Tek mesaj, hazır dosya</h2>
+      <div class="prompt" style="font-size:20px">FB.7.4.2 için 2 ders saatlik çalışma kâğıdı hazırla. Sınıf 7/A-C, 2. dönem 8. hafta, toplam 50 puan. Laboratuvarda ince ve kalın kenarlı mercekler, el feneri ve beyaz karton var.</div>
+      <p class="muted">1–3 dakika · .docx dosya kartı ve Öğretmen Notu</p>
+    </div>
+    <img src="assets/ornek-calisma-kagidi.jpg" alt="Üretilen çalışma kâğıdının ilk sayfası">
+  </div>
+</section>
+
+<!-- 11 Sabit / değişken -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <h2>Ne sabit, ne değişken?</h2>
+  <div class="grid2">
+    <div class="box"><h3>Şablondan, her seferinde aynı</h3><ul style="font-size:23px"><li>Logo, A4, Calibri</li><li>Künye: Ad, No, Tarih boş</li><li>Numaralı bölümler</li><li>Kutular: 1,5 / 3,5 / 7 cm</li><li>Puan toplamı kontrolü</li><li>Alt bilgide dosya adı</li></ul></div>
+    <div class="box"><h3>Gem'in doldurduğu</h3><ul style="font-size:23px"><li>Etkinlik adı, sınıf, hafta</li><li>Gözlem amacı, malzemeler</li><li>Ön Bilgi · İnceleme · Yorumlama</li><li>Sorular, tablolar, puanlar</li><li>Öğretmen Notu: cevap anahtarı</li></ul></div>
+  </div>
+</section>
+
+<!-- 12 Ara -->
+<section class="slide" style="justify-content:center;align-items:center;text-align:center">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <div class="big">Ara</div>
+  <p class="muted" style="font-size:30px">10 dakika · İsterseniz çalışma kâğıdı isteğinizi şimdi gönderin.</p>
+</section>
+
+<!-- 13 Uygulama 2 -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <span class="timer">Uygulama 2 · 25 dakika</span>
+  <h2>Kendi çalışma kâğıdınız</h2>
+  <div class="grid2">
+    <div><p><b>Yeni sohbet</b>, tek mesajda:</p><ul style="font-size:23px"><li>öğrenme çıktısı</li><li>ders saati</li><li>sınıf / şube</li><li>dönem ve hafta</li><li>toplam puan</li><li>elinizdeki malzemeler</li></ul></div>
+    <div class="box"><h3>İndirdikten sonra kontrol</h3><ul style="font-size:22px"><li>Kod ve süreç bileşenleri doğru mu?</li><li>Sınıf düzeyi ve sınırlılıklar?</li><li>Kutular yönergeyle eşleşiyor mu?</li><li>"Deney" mi, "bilimsel gözlem" mi?</li></ul></div>
+  </div>
+</section>
+
+<!-- 14 Ders planı ve kontrol -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <h2>Ders planı ve kontrol</h2>
+  <div class="grid2">
+    <div><p class="kicker">Ders planı</p><div class="prompt" style="font-size:20px">FB.7.4.2 için 2 ders saatlik bir ders planı hazırla. 26 öğrenci; 3'ü hızlı ilerliyor, 2'si destek gerektiriyor.</div><p class="muted" style="font-size:21px">Dakika dakika akış, süreç bileşeni kodları, farklılaştırma, öğrenme kanıtları</p></div>
+    <div><p class="kicker">Kontrol</p><div class="prompt" style="font-size:20px">Aşağıdaki etkinliğimi programa uygunluk açısından kontrol et: …</div><p class="muted" style="font-size:21px">1–5 puanlama, en önemli 3 iyileştirme, sınırı aşan cümleler</p></div>
+  </div>
+</section>
+
+<!-- 15 Sınırlar -->
+<section class="slide">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <h2>Sınırlar ve sorumluluk</h2>
+  <ol>
+    <li><b>İçerik sizin onayınızda.</b> Biçim sabit; içeriği yazdırmadan önce okuyun.</li>
+    <li><b>"[Genel öneri]"</b> programdan değil, Gem'in kendi önerisidir.</li>
+    <li><b>Öğrenci verisi yazılmaz:</b> ad, not, sağlık bilgisi yok.</li>
+    <li><b>Konu değişince yeni sohbet.</b> Belgeler her sohbette hazır.</li>
+    <li><b>17 Kasım 2026:</b> Gem'ler "beceriler"e taşınıyor; geçişten sonra kontrol edilecek.</li>
+  </ol>
+</section>
+
+<!-- 16 Kapanış -->
+<section class="slide cover">
+  <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
+  <div class="txt">
+    <p class="kicker">Kapanış</p>
+    <h1 style="font-size:56px">Her şey tek adreste</h1>
+    <ul style="font-size:24px"><li>Öğretmen talimatı: 5 adım ve kontrol listesi</li><li>Rehber: nasıl çalışıyor, sık sorulanlar</li><li>Gem bağlantısı</li></ul>
+    <p class="muted" style="margin-top:22px">Sorular?</p>
+  </div>
+  <div class="qr"><img src="assets/qr.svg" alt="Atölye sitesinin QR kodu"><div class="url">akaymu.github.io/ted-maarif-danismani</div></div>
+</section>
+
+</main>
+<div id="bar"></div>
+<div id="hint">← → ilerle · F tam ekran</div>
+<script>
+(function () {
+  var stage = document.getElementById("stage");
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var bar = document.getElementById("bar");
+  var i = Math.min(Math.max((parseInt(location.hash.slice(2), 10) || 1) - 1, 0), slides.length - 1);
+  slides.forEach(function (s, k) { var pg = document.createElement("div"); pg.className = "pg"; pg.textContent = (k + 1) + " / " + slides.length; s.appendChild(pg); });
+  function fit() { var k = Math.min(innerWidth / 1280, innerHeight / 720); stage.style.transform = "translate(-50%, -50%) scale(" + k + ")"; }
+  function show(n) {
+    i = Math.min(Math.max(n, 0), slides.length - 1);
+    slides.forEach(function (s, k) { s.classList.toggle("on", k === i); });
+    bar.style.width = ((i + 1) / slides.length * 100) + "%";
+    history.replaceState(null, "", "#s" + (i + 1));
+  }
+  addEventListener("resize", fit);
+  addEventListener("keydown", function (e) {
+    if (["ArrowRight", "PageDown", " ", "Enter"].indexOf(e.key) > -1) { e.preventDefault(); show(i + 1); }
+    else if (["ArrowLeft", "PageUp", "Backspace"].indexOf(e.key) > -1) { e.preventDefault(); show(i - 1); }
+    else if (e.key === "Home") show(0);
+    else if (e.key === "End") show(slides.length - 1);
+    else if (e.key === "f" || e.key === "F") { if (!document.fullscreenElement) document.documentElement.requestFullscreen && document.documentElement.requestFullscreen().catch(function () {}); else document.exitFullscreen(); }
+  });
+  document.querySelectorAll("#nav button").forEach(function (b) { b.addEventListener("click", function () { show(i + parseInt(b.dataset.d, 10)); }); });
+  var x0 = null;
+  addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  addEventListener("touchend", function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1)); x0 = null; });
+  fit(); show(i);
+})();
+</script>
+</body>
+</html>

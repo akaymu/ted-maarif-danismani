@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sunucu Talimatı · Maarif Danışmanı</title>
+<link rel="icon" href="assets/amblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.agenda td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--navy); }
+.agenda td:nth-child(2) { font-weight: 600; }
+.agenda .hands td { background: color-mix(in srgb, var(--navy) 7%, transparent); }
+.files { display: grid; gap: 8px; padding: 0; list-style: none; }
+.files a { display: flex; justify-content: space-between; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; text-decoration: none; }
+.files a span:last-child { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.files a span:first-child { font-family: var(--mono); font-size: 14px; overflow-wrap: anywhere; min-width: 0; }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="in">
+  <img src="assets/amblem.png" alt="">
+  <a class="brand" href="./">Maarif Danışmanı</a>
+  <nav aria-label="Sayfalar"><a href="rehber.html">Rehber</a><a href="ogretmen.html">Öğretmen</a><a href="sunucu.html" aria-current="page">Sunucu</a><a href="sunum.html">Sunum</a></nav>
+</div></header>
+
+<main class="wrap">
+  <p class="eyebrow">Sunucu talimatı</p>
+  <h1>2 saatlik atölye</h1>
+  <p class="lead">Atölyenin sonunda her öğretmen Gem'i kendi Pro hesabından açmış, kendi sınıfından bir öğrenme çıktısını sormuş ve kendi ünitesinden bir çalışma kâğıdını indirip kontrol etmiş olur.</p>
+
+  <h2>Atölyeden önce</h2>
+  <h3>Bir hafta önce</h3>
+  <ul class="check">
+    <li>Her öğretmenin <strong>Google AI Pro</strong> hesabı var mı? Gemini'da hesap adının altında "Pro" görünmeli. Pro olmayan hesapta sistem çalışmıyor.</li>
+    <li>Öğretmenlerden atölyeye kendi sınıflarından <strong>bir öğrenme çıktısı</strong> (ör. FB.6.2.1) ve bildikleri malzemelerle gelmelerini isteyin.</li>
+    <li>Her öğretmen dizüstü bilgisayar getirecek. Telefonda dosya indirme ve önizleme zahmetli.</li>
+  </ul>
+  <h3>Bir gün önce</h3>
+  <ul class="check">
+    <li>Gem bağlantısını kendi Pro hesabınızla açın ve deneme isteğini gönderin. Bir .docx gelmeli.
+      <div class="prompt"><q>5. sınıfın ünitelerini, öğrenme çıktısı sayılarını ve ders saatlerini listele.</q><button class="copy" type="button">Kopyala</button></div>
+      Doğru cevap: 7 ünite, toplam 144 saat (ör. Kuvveti Tanıyalım: 4 çıktı, 22 saat).</li>
+    <li>Demo için bir çalışma kâğıdı üretip indirin. İnternet ya da Gemini yavaşlarsa bunu gösterirsiniz.</li>
+    <li>Sunumu projeksiyon bilgisayarında açın: <a href="sunum.html">sunum.html</a>, <strong>F</strong> tuşu tam ekran.</li>
+  </ul>
+  <h3>30 dakika önce</h3>
+  <ul class="check">
+    <li>Wi-Fi bilgisi tahtada yazılı.</li>
+    <li>Sunum açık, kapak slaytında QR kodu görünüyor.</li>
+    <li>İkinci sekmede Gem açık, model "Pro" seçili, yeni sohbet boş.</li>
+  </ul>
+
+  <h2>Akış</h2>
+  <div class="tbl"><table class="agenda">
+    <thead><tr><th>Dakika</th><th>Bölüm</th><th>Ne yapılır</th><th>Slayt</th></tr></thead>
+    <tbody>
+      <tr><td>0–10</td><td>Açılış</td><td>QR'ı okutun, herkes siteyi açsın. Amaç: "Programı ezberlemek yerine programa soru sormak; çalışma kâğıdını biçimle uğraşmadan almak."</td><td>1–3</td></tr>
+      <tr><td>10–25</td><td>Nasıl çalışıyor?</td><td>Gem'in içinde ne var, neden Pro. <strong>Canlı demo:</strong> 5.3.2 sorusu, ardından "bu öğrenme çıktısı…" takip sorusu. Takip sorusunda önceki sorunun hatırlandığını gösterin.</td><td>4–8</td></tr>
+      <tr class="hands"><td>25–40</td><td>Uygulama 1</td><td>Herkes Gem'i açar, Pro'yu seçer, kendi çıktısını sorar: süreç bileşenleri, anahtar kavramlar, süre, yaşantılar. Siz sınıfta dolaşın; "Pro" görünmeyen hesapları ayıklayın.</td><td>9</td></tr>
+      <tr><td>40–55</td><td>Çalışma kâğıdı</td><td><strong>Canlı demo:</strong> FB.7.4.2 isteği. Bekleme sırasında (1–3 dk) şablonda neyin sabit olduğunu anlatın. Dosyayı indirip Word'de açın, Öğretmen Notu'nu gösterin.</td><td>10–11</td></tr>
+      <tr><td>55–65</td><td>Ara</td><td>Arada Gem çalışmaya devam edebilir; isteyen isteğini aradan önce gönderir.</td><td>12</td></tr>
+      <tr class="hands"><td>65–90</td><td>Uygulama 2</td><td>Herkes kendi ünitesinden bir çalışma kâğıdı ister, indirir ve kontrol listesiyle inceler. Hatalı bulduklarını not etsinler; paylaşımda konuşulacak.</td><td>13</td></tr>
+      <tr><td>90–105</td><td>Ders planı ve kontrol</td><td><strong>Demo:</strong> aynı çıktı için 2 ders saatlik plan. Ardından bir öğretmenin eski etkinliğini "kontrol et" ile puanlatın.</td><td>14</td></tr>
+      <tr><td>105–115</td><td>Paylaşım ve sınırlar</td><td>2–3 öğretmen dosyasını ekranda gösterir. Kontrol listesi, öğrenci verisi kuralı, "[Genel öneri]" etiketi, Gem'lerin "beceriler"e geçişi.</td><td>15</td></tr>
+      <tr><td>115–120</td><td>Kapanış</td><td>Site adresi ve QR. Sorular.</td><td>16</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Demo istekleri</h2>
+  <div class="prompt"><q>5.3.2 numaralı öğrenme çıktısı için ölçülebilir öğrenci performanslarını ve anahtar kelimeleri listeler misin?</q><button class="copy" type="button">Kopyala</button></div>
+  <div class="prompt"><q>Bu öğrenme çıktısı için MEB kaç ders saati ve hangi öğrenme yaşantılarını öneriyor?</q><button class="copy" type="button">Kopyala</button></div>
+  <div class="prompt"><q>FB.7.4.2 için 2 ders saatlik çalışma kâğıdı hazırla. Sınıf 7/A-C, 2. dönem 8. hafta, toplam 50 puan, 2025-2026 eğitim öğretim yılı. Laboratuvarda ince ve kalın kenarlı mercekler, el feneri ve beyaz karton var.</q><button class="copy" type="button">Kopyala</button></div>
+  <div class="prompt"><q>FB.7.4.2 için 2 ders saatlik bir ders planı hazırla. Sınıfta 26 öğrenci var, 3'ü hızlı ilerliyor, 2'si destek gerektiriyor.</q><button class="copy" type="button">Kopyala</button></div>
+  <p>Demoda söylenecek ana noktalar:</p>
+  <ol class="steps">
+    <li>Kodlar ve süreç bileşenleri programla <u>birebir</u> aynı. Bir tanesini PDF'ten açıp karşılaştırın.</li>
+    <li>Süre sorusunda Gem "program çıktı bazında süre vermiyor" der ve önerisini "[Genel öneri]" diye işaretler.</li>
+    <li>Çalışma kâğıdında logo, künye, kutular ve puan toplamı kodla sabitlenmiş. Değişen yalnızca içerik.</li>
+  </ol>
+
+  <h2>Sorun giderme</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Durum</th><th>Çözüm</th></tr></thead>
+    <tbody>
+      <tr><td>Dosya kartı gelmedi, yalnızca metin var</td><td>Aynı sohbette: <code>.docx dosyası olarak ver.</code></td></tr>
+      <tr><td>Hesapta "Pro" yok; şablon tutmuyor, takip sorusu unutuluyor</td><td>Öğretmen Pro hesabına geçmeli. Tarayıcıda birden fazla Google hesabı varsa sol alttaki profil menüsünden Pro olanı seçin, Gem bağlantısını yeniden açın.</td></tr>
+      <tr><td>Model "Flash" seçili</td><td>Mesaj kutusunun altındaki seçiciden "Pro".</td></tr>
+      <tr><td>"Bu konuda yardımcı olamam" türü ret</td><td>Yeni sohbet açın, modelin Pro olduğunu kontrol edin, isteği yeniden gönderin.</td></tr>
+      <tr><td>Yanlış sınıftan cevap</td><td>Kodu tam yazın: <code>FB.6.2.1</code>. Sınıfı açıkça söyleyin.</td></tr>
+      <tr><td>Cevap 3 dakikadan uzun sürüyor</td><td>Normal olabilir. Bekleyin; 5 dakikayı geçerse sayfayı yenileyip yeniden gönderin. Demo yedeği: önceden indirilen dosya.</td></tr>
+      <tr><td>Gem bağlantısı "erişiminiz yok" diyor</td><td>Bağlantının sonu <code>?usp=sharing</code> ile bitmeli. Sorun sürerse Gem sahibinin paylaşım ayarını kontrol edin ("Bağlantıya sahip olan herkes").</td></tr>
+      <tr><td>Kullanım sınırı mesajı</td><td>Pro'nun da günlük sınırı var; birkaç saat sonra yenilenir. Öğretmen o sırada başka bir arkadaşının ekranından devam etsin.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="yedek">Yedek kurulum</h2>
+  <p>Gem silinirse, "beceriler" geçişinde bozulursa ya da başka bir hesaba taşınması gerekirse 10 dakikada yeniden kurulur.</p>
+  <ol class="steps">
+    <li>Pro hesapla <strong>gemini.google.com → Gem'ler → Yeni Gem</strong>. Adı: <em>Maarif Danışmanı – Fen Bilimleri</em>.</li>
+    <li><strong>Talimatlar</strong> alanına <span class="file">gem-talimat.txt</span> içeriğini yapıştırın. Metnin alanda yalnızca bir kez bulunduğunu kontrol edin.</li>
+    <li><strong>Bilgi</strong> bölümüne aşağıdaki 9 dosyayı yükleyin ve kaydedin.</li>
+    <li><strong>Paylaş → Bağlantıya sahip olan herkes → Görüntüleyen</strong>. Dosya erişimi sorulursa yine "Görüntüleyen".</li>
+    <li>Yeni bağlantı eskisinden farklı olur. Bu sitedeki bağlantıyı güncelleyin: GitHub deposunda <code>index.html</code> ve <code>ogretmen.html</code>.</li>
+    <li>Bir gün öncesi kontrol isteğini gönderin ve bir çalışma kâğıdı deneyin.</li>
+  </ol>
+  <ul class="files">
+    <li><a href="dosyalar/gem-talimat.txt" download><span>gem-talimat.txt</span><span>Gem talimatı · 9 KB</span></a></li>
+    <li><a href="dosyalar/ws_olustur.py" download><span>ws_olustur.py</span><span>Çalışma kâğıdı üreticisi · 237 KB</span></a></li>
+    <li><a href="dosyalar/00_Fen_Programi_Genel_Bolum_ve_Sure_Tablosu.pdf" download><span>00_Fen_Programi_Genel_Bolum_ve_Sure_Tablosu.pdf</span><span>2,1 MB</span></a></li>
+    <li><a href="dosyalar/01_Maarif_Modeli_Ortak_Metin.pdf" download><span>01_Maarif_Modeli_Ortak_Metin.pdf</span><span>4,8 MB</span></a></li>
+    <li><a href="dosyalar/03_Fen_Programi_3_Sinif.pdf" download><span>03_Fen_Programi_3_Sinif.pdf</span><span>0,5 MB</span></a></li>
+    <li><a href="dosyalar/04_Fen_Programi_4_Sinif.pdf" download><span>04_Fen_Programi_4_Sinif.pdf</span><span>0,5 MB</span></a></li>
+    <li><a href="dosyalar/05_Fen_Programi_5_Sinif.pdf" download><span>05_Fen_Programi_5_Sinif.pdf</span><span>0,5 MB</span></a></li>
+    <li><a href="dosyalar/06_Fen_Programi_6_Sinif.pdf" download><span>06_Fen_Programi_6_Sinif.pdf</span><span>0,6 MB</span></a></li>
+    <li><a href="dosyalar/07_Fen_Programi_7_Sinif.pdf" download><span>07_Fen_Programi_7_Sinif.pdf</span><span>0,5 MB</span></a></li>
+    <li><a href="dosyalar/08_Fen_Programi_8_Sinif.pdf" download><span>08_Fen_Programi_8_Sinif.pdf</span><span>0,6 MB</span></a></li>
+  </ul>
+  <div class="note"><p><strong>Paylaşım notu:</strong> Gem bağlantısına sahip herkes Gem'i kullanabilir; talimatı ve bilgi dosyalarını görebilir ama değiştiremez. Öğretmenlerin sohbetleri yalnızca kendi hesaplarında görünür.</p></div>
+
+  <h2>Bakım</h2>
+  <ol class="steps">
+    <li><strong>17 Kasım 2026'dan sonra:</strong> Google Gem'leri "beceriler"e taşıyor. Gem'i açıp talimatın ve 9 dosyanın yerinde olduğunu, bir çalışma kâğıdının hâlâ üretildiğini kontrol edin.</li>
+    <li><strong>Program güncellenirse:</strong> ilgili sınıfın PDF'ini Gem'in bilgi bölümünde değiştirin.</li>
+    <li><strong>Şablon değişirse</strong> (logo, künye, yazı tipi): <span class="file">ws_olustur.py</span> yeni şablondan yeniden üretilmeli; Gem'deki dosya değiştirilir.</li>
+  </ol>
+
+  <footer class="site"><a href="./">Ana sayfa</a> · <a href="sunum.html">Sunumu aç</a></footer>
+</main>
+<script src="assets/copy.js"></script>
+</body>
+</html>

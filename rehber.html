@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rehber · Maarif Danışmanı</title>
+<link rel="icon" href="assets/amblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }
+.flow div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; font-size: 14.5px; position: relative; }
+.flow b { display: block; color: var(--navy-deep); margin-bottom: 4px; }
+.flow div:not(:last-child)::after { content: "→"; position: absolute; right: -10px; top: 50%; transform: translate(50%, -50%); color: var(--red); font-weight: 700; }
+.modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.modes div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+.modes h3 { margin: 0 0 4px; }
+.modes p { margin: 0 0 8px; color: var(--muted); font-size: 15px; }
+.modes code { display: block; white-space: normal; padding: 6px 8px; }
+.yes { color: var(--ok); font-weight: 600; } .no { color: var(--red); font-weight: 600; }
+@media (max-width: 640px) { .flow, .modes { grid-template-columns: 1fr; } .flow div:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -14px; transform: translateX(50%); } }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="in">
+  <img src="assets/amblem.png" alt="">
+  <a class="brand" href="./">Maarif Danışmanı</a>
+  <nav aria-label="Sayfalar"><a href="rehber.html" aria-current="page">Rehber</a><a href="ogretmen.html">Öğretmen</a><a href="sunucu.html">Sunucu</a><a href="sunum.html">Sunum</a></nav>
+</div></header>
+
+<main class="wrap">
+  <p class="eyebrow">Rehber</p>
+  <h1>Maarif Danışmanı nasıl çalışır?</h1>
+  <p class="lead">"Maarif Danışmanı – Fen Bilimleri", Gemini'da kurulmuş bir Gem'dir. Gem, kalıcı talimatı ve yüklü belgeleri olan özel bir Gemini sohbetidir. Öğretmen hiçbir belge yüklemeden soru sorar; Gem cevabı Maarif Modeli belgelerine dayandırır ve istenirse etkinliği okulun şablonunda Word dosyası olarak verir.</p>
+
+  <h2>Akış</h2>
+  <div class="flow" role="list">
+    <div role="listitem"><b>Öğretmen</b>Kısa bir istek yazar: "5.3.2 için…"</div>
+    <div role="listitem"><b>Gem talimatı</b>Kodu FB.5.3.2 olarak tanır, yalnızca 5. sınıf dosyasında arar</div>
+    <div role="listitem"><b>Bilgi dosyaları</b>Program ve Ortak Metin'den birebir alıntı yapar, kaynağı yazar</div>
+    <div role="listitem"><b>Çıktı</b>Cevap veya okul şablonunda .docx ve Öğretmen Notu</div>
+  </div>
+
+  <h2>Gem'in içinde ne var?</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Dosya</th><th>Ne işe yarar</th></tr></thead>
+    <tbody>
+      <tr><td><span class="file">gem-talimat.txt</span></td><td>Kurallar: önce belgede bul sonra yaz, kodları birebir aktar, kaynak göster, eski programı ("kazanım") karıştırma, sınıf düzeyini aşma, sınırlılıklara uy, kendi önerini "[Genel öneri]" diye işaretle.</td></tr>
+      <tr><td><span class="file">00_Fen_Programi_Genel_Bolum…pdf</span></td><td>Programın genel yaklaşımı, ünite–çıktı sayısı–ders saati tablosu</td></tr>
+      <tr><td><span class="file">01_Maarif_Modeli_Ortak_Metin.pdf</span></td><td>Kavramsal beceriler, eğilimler, SDB, değerler, okuryazarlıklar, ölçme ilkeleri</td></tr>
+      <tr><td><span class="file">03 … 08_Fen_Programi_N_Sinif.pdf</span></td><td>Her sınıfın üniteleri ayrı dosyada. Böylece cevaplar doğru sınıftan gelir.</td></tr>
+      <tr><td><span class="file">ws_olustur.py</span></td><td>Çalışma kâğıdı üreticisi. Okulun şablonu içinde. Gemini yalnızca içeriği yazar; logo, A4, Calibri, künye, kutu boyutları ve alt bilgiyi bu dosya belirler.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Dört çalışma biçimi</h2>
+  <div class="modes">
+    <div><h3>Soru-cevap</h3><p>Öğrenme çıktısı, süreç bileşenleri, anahtar kavramlar, süre, öğrenme yaşantıları.</p><code>5.3.2 için ölçülebilir performansları listele.</code></div>
+    <div><h3>Ders planı</h3><p>Künye, süreç bileşenleri, köprü kurma, dakika dakika akış, farklılaştırma, öğrenme kanıtları.</p><code>Bu çıktı için 2 ders saatlik ders planı hazırla.</code></div>
+    <div><h3>Kontrol</h3><p>Hazırladığınız plan, etkinlik veya sınavı programa uygunluk açısından 1–5 puanlar ve 3 iyileştirme önerir.</p><code>Şu etkinliği programa göre kontrol et: …</code></div>
+    <div><h3>Çalışma kâğıdı</h3><p>Okulun şablonunda .docx dosyası ve sohbette Öğretmen Notu (cevap anahtarı, puanlama).</p><code>FB.7.4.2 için 2 ders saatlik çalışma kâğıdı hazırla…</code></div>
+  </div>
+
+  <h2>Öğretmenin günlük dili, programın başlıkları</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Öğretmen sorar</th><th>Gem programda şuna bakar</th></tr></thead>
+    <tbody>
+      <tr><td>Ölçülebilir öğrenci performansları</td><td>Öğrenme çıktısının <strong>süreç bileşenleri</strong> (a, b, c…)</td></tr>
+      <tr><td>Anahtar kelimeler</td><td>Ünitenin <strong>anahtar kavramları</strong> ve içerik çerçevesi</td></tr>
+      <tr><td>Kaç ders saati</td><td>Ünite–süre tablosu. Program çıktı bazında süre vermez.</td></tr>
+      <tr><td>Önerilen etkinlikler, öğrenme yaşantıları</td><td>Temel kabuller, ön değerlendirme, köprü kurma, o çıktının öğrenme-öğretme uygulamaları, farklılaştırma</td></tr>
+      <tr><td>Ölçme-değerlendirme</td><td><strong>Öğrenme kanıtları</strong></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Neden Google AI Pro?</h2>
+  <p>Aynı Gem iki hesapta, aynı isteklerle test edildi (31 Ekim 2026):</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Test</th><th>Pro hesap</th><th>Pro olmayan hesap</th></tr></thead>
+    <tbody>
+      <tr><td>5.3.2 süreç bileşenleri ve anahtar kavramlar</td><td class="yes">Doğru, birebir</td><td class="yes">Doğru</td></tr>
+      <tr><td>"Bu öğrenme çıktısı için…" takip sorusu</td><td class="yes">Önceki soruyu hatırladı</td><td class="no">Unuttu, "hangi çıktı?" diye sordu</td></tr>
+      <tr><td>Okul şablonunda .docx</td><td class="yes">4 testte 4 dosya</td><td class="no">Şablonu kullanmadı, .docx vermedi</td></tr>
+      <tr><td>FB.7.4.2 çalışma kâğıdı</td><td class="yes">Üretildi</td><td class="no">Reddetti</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Çalışma kâğıdında ne sabit, ne değişken?</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Şablondan, her seferinde aynı</th><th>Gem'in doldurduğu</th></tr></thead>
+    <tbody>
+      <tr><td>Header'da logo, A4, kenar boşlukları, Calibri 11/12, 1,5 satır aralığı</td><td>Etkinlik adı, eğitim yılı, sınıf, dönem, hafta</td></tr>
+      <tr><td>Künye: Adı-Soyadı, No ve Tarih boş; Puan ___ / toplam</td><td>Ünite/Tema/Konu ve şube</td></tr>
+      <tr><td>Numaralı bölümler (madde işareti yok), kalın etiketler</td><td>Gözlem amacı, malzemeler, sorular, yönergeler, tablolar</td></tr>
+      <tr><td>Cevap kutuları: küçük 1,5 cm, orta 3,5 cm, büyük 7 cm; tablo satırı 1,4 cm</td><td>Hangi soruya hangi kutu, puanlar (toplam kodla kontrol edilir)</td></tr>
+      <tr><td>Alt bilgi: solda sayfa numarası, sağda dosya adı</td><td>Dosya adı, örneğin <code>fen_ws_mercekler_vs1_11/2026</code></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Sınırlar ve sorumluluk</h2>
+  <ol class="steps">
+    <li><strong>İçerik öğretmenin onayındadır.</strong> Biçim sabittir, içerik bir yapay zekâ modelinden gelir. Yazdırmadan önce okuyun. Kontrol listesi <a href="ogretmen.html">öğretmen talimatında</a>.</li>
+    <li><strong>Gem belgelerde olmayanı bilmez.</strong> Bulamadığında "programda bulamadım" der. Kendi önerisini "[Genel öneri]" diye işaretler.</li>
+    <li><strong>Öğrenci verisi girilmez.</strong> Ad, not, sağlık bilgisi yazılmaz.</li>
+    <li><strong>Gem'ler "beceriler"e dönüşüyor.</strong> Google, Gem'leri 17 Kasım 2026'dan itibaren "beceriler" (skills) yapısına taşıyor. Geçişten sonra Gem'in talimatı ve dosyaları kontrol edilmeli. <a href="sunucu.html#yedek">Yedek kurulum</a> sunucu sayfasında.</li>
+    <li><strong>Program güncellenirse</strong> yeni PDF'ler Gem'in bilgi bölümünde eskilerinin yerine yüklenir; talimatın değişmesi gerekmez.</li>
+  </ol>
+
+  <h2>Sık sorulanlar</h2>
+  <details><summary>Belgeleri her sohbette yeniden yüklemem gerekir mi?</summary><p style="padding:0 14px">Hayır. Belgeler Gem'in içinde. Her yeni sohbette hazırdır.</p></details>
+  <details><summary>Gem'i kendi hesabıma kopyalayabilir miyim?</summary><p style="padding:0 14px">Gerek yok; paylaşılan bağlantı herkes için aynı Gem'i açar ve güncellemeler tek yerden yapılır. Kendi kopyanızı kurmak isterseniz dosyalar <a href="sunucu.html#yedek">sunucu sayfasında</a>.</p></details>
+  <details><summary>Sohbetlerimi başkaları görür mü?</summary><p style="padding:0 14px">Hayır. Paylaşılan bir Gem'le yaptığınız sohbetler yalnızca sizin hesabınızda görünür.</p></details>
+  <details><summary>Başka dersler için de yapılabilir mi?</summary><p style="padding:0 14px">Evet. Aynı yapı (talimat + o dersin programı + ws_olustur.py) başka bir ders için de kurulabilir. Talimattaki "fen" ifadeleri ve şablondaki ders adı değiştirilir.</p></details>
+
+  <footer class="site"><a href="./">Ana sayfa</a> · Kaynak belgeler: Türkiye Yüzyılı Maarif Modeli Öğretim Programları Ortak Metni; Fen Bilimleri Dersi Öğretim Programı (3–8. sınıflar); TED Bodrum Koleji Y/S Prosedür Şablonu.</footer>
+</main>
+</body>
+</html>
