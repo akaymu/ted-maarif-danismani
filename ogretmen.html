@@ -18,30 +18,111 @@
 
 <main class="wrap">
   <p class="eyebrow">Öğretmen talimatı</p>
-  <h1>Beş adımda Maarif Danışmanı</h1>
-  <p class="lead">Belge yüklemenize gerek yok. Program, Ortak Metin ve okulun şablonu Gem'in içinde.</p>
+  <h1>Kendi Maarif Danışmanınızı kurun</h1>
+  <p class="lead">Bu sayfanın sonunda kendi dersinizin programını bilen, sorularınızı programa dayanarak yanıtlayan ve okulun şablonunda çalışma kâğıdı veren bir Gemini Gem'iniz olacak. Kurulum yaklaşık bir saat sürer; bir kez yapılır.</p>
+  <p>Gem, kalıcı talimatı ve yüklü belgeleri olan özel bir Gemini sohbetidir. Talimatı ve belgeleri bir kez yüklersiniz; sonra yalnızca soru sorarsınız.</p>
 
-  <h2>1. Gem'i açın</h2>
+  <h2 id="hazirlik">0. Hazırlık</h2>
+  <ul class="check">
+    <li>Dizüstü ya da masaüstü bilgisayar. Telefonla kurulum yapılmaz.</li>
+    <li>Chrome tarayıcı.</li>
+    <li><strong>Google AI Pro</strong> hesabı. Pro olmayan hesapta Gem şablonu kullanmaz, önceki soruyu unutur.</li>
+    <li>Hangi dersin, hangi sınıfların programıyla çalışacağınızı bilin (ör. Matematik, 5–8).</li>
+  </ul>
+
+  <h2 id="adim-1">1. Gemini'a girin</h2>
   <ol class="steps">
-    <li>Bilgisayarda <strong>Google AI Pro</strong> hesabınızla giriş yapın. Gemini'da hesap adınızın altında "Pro" yazmalı.</li>
-    <li><a class="btn" href="https://gemini.google.com/gem/1J91IW7ghV2cMqy8UDze6Suy1BwKjvmki?usp=sharing" target="_blank" rel="noopener">Maarif Danışmanı – Fen Bilimleri</a></li>
-    <li>Mesaj kutusunun altındaki model seçicide <strong>Pro</strong>'yu seçin. Her yeni sohbette kontrol edin.</li>
+    <li>Chrome'da <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a> adresini açın.</li>
+    <li>Sağ üstte <strong>Oturum aç</strong> düğmesi varsa tıklayın ve okul Google hesabınızla giriş yapın.</li>
+    <li>Sağ üstteki yuvarlak profil resminize tıklayın. Birden fazla hesap görüyorsanız <strong>Pro</strong> olanı seçin.</li>
+    <li>Sol alttaki hesap adınızın altında <strong>"Pro"</strong> yazdığını kontrol edin.</li>
+    <li>Mesaj kutusunun altındaki model seçiciye tıklayın ve <strong>Pro</strong>'yu seçin.</li>
+  </ol>
+  <div class="note"><p>"Pro" görünmüyorsa devam etmeyin; önce doğru hesaba geçin. Sorun sürerse <a href="#sorun-giderme">sorun giderme</a> bölümüne bakın.</p></div>
+
+  <h2 id="adim-2">2. Belgeleri indirin</h2>
+  <p>Gem'e dört dosya vereceksiniz. Hepsini bilgisayarınızda aynı klasöre (ör. <strong>İndirilenler</strong>) indirin.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Dosya</th><th>Nereden</th><th>Ne işe yarar</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Dersinizin öğretim programı</strong> (PDF)</td><td>MEB, aşağıdaki adımlarla</td><td>Öğrenme çıktıları, süreler, yaşantılar. Gem'in asıl kaynağı.</td></tr>
+      <tr><td><a class="file" href="dosyalar/01_Maarif_Modeli_Ortak_Metin.pdf" download>01_Maarif_Modeli_Ortak_Metin.pdf</a></td><td>Bu site</td><td>Beceriler, eğilimler, değerler, ölçme ilkeleri. Her ders için aynı.</td></tr>
+      <tr><td><a class="file" href="dosyalar/ws_olustur.py" download>ws_olustur.py</a></td><td>Bu site</td><td>Çalışma kâğıdını okulun şablonunda (logo, künye, kutular) üretir. Açmanıza gerek yok.</td></tr>
+      <tr><td><a class="file" href="dosyalar/gem-talimat-sablon.txt" download>gem-talimat-sablon.txt</a></td><td>Bu site</td><td>Gem'in kuralları. 3. adımda kendi dersinize uyarlayacaksınız.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Programı MEB'den indirme</h3>
+  <ol class="steps" id="meb-yolu">
+    <li><a href="https://mufredat.meb.gov.tr" target="_blank" rel="noopener">mufredat.meb.gov.tr</a> adresini açın.</li>
+    <li>Üst menüden <strong>Öğretim Programları</strong>'na tıklayın.</li>
+    <li>Önce adı <strong>TYMM</strong> ile başlayan sekmeye bakın (ör. <strong>TYMM Temel Eğitim</strong>). Bunlar Türkiye Yüzyılı Maarif Modeli programlarıdır. Dersiniz orada varsa onu seçin, ör. <em>[TYMM] ORTAOKUL MATEMATİK DERSİ (5-8) (2026)</em>.</li>
+    <li>Dersiniz TYMM sekmelerinde yoksa eski programı kullanın: ortaokul için <strong>Temel Eğitim</strong>, lise için <strong>Ortaöğretim</strong> sekmesi.</li>
+    <li>Dersin satırındaki <strong>İndir</strong>'e tıklayın. PDF yeni sekmede açılırsa sağ üstteki indirme simgesiyle bilgisayarınıza kaydedin.</li>
+  </ol>
+  <p><strong>Programı bölmeyin.</strong> Tüm sınıfları kapsayan tek PDF'i olduğu gibi yükleyeceksiniz; Gem sınıfı dosyanın içindeki başlıktan bulur.</p>
+
+  <h3>Programınız hangi model?</h3>
+  <p>İndirdiğiniz PDF'i açın ve bir öğrenme hedefine bakın:</p>
+  <ul class="check">
+    <li><strong>"Öğrenme çıktısı"</strong> ve <strong>"süreç bileşenleri"</strong> yazıyorsa: Türkiye Yüzyılı Maarif Modeli programı. Bu sayfa tam olarak buna göre yazıldı.</li>
+    <li><strong>"Kazanım"</strong> yazıyorsa: eski program. Kurulum aynı; talimat bunu tanır ve kazanım kodlarıyla çalışır. Yalnızca test adımında "öğrenme çıktısı" yerine "kazanım" deyin.</li>
+  </ul>
+
+  <h2 id="adim-3">3. Talimatı uyarlayın</h2>
+  <ol class="steps">
+    <li><span class="file">gem-talimat-sablon.txt</span> dosyasını açın: Mac'te <strong>TextEdit</strong>, Windows'ta <strong>Not Defteri</strong>. Word kullanmayın.</li>
+    <li>Köşeli parantezli büyük harfli yedi alanı aşağıdaki tabloya göre değiştirin. Köşeli parantezleri de silin.</li>
+    <li>Dosyayı kaydedin.</li>
+    <li><strong>Kontrol:</strong> düzenleyicide arama (Mac: ⌘F, Windows: Ctrl+F) açın ve <code>[</code> arayın. Yalnızca <code>[Genel öneri]</code>, <code>[ünite/bölüm]</code>, <code>[0]</code> ve <code>[5. Sınıf – 3. Ünite – Öğrenme Çıktıları]</code> kalmalı. Büyük harfli bir köşeli parantez kaldıysa doldurmayı unuttunuz.</li>
+  </ol>
+  <div class="tbl"><table>
+    <thead><tr><th>Alan</th><th>Ne yazılır, nereden bulunur</th><th>Fen örneği</th><th>Matematik örneği</th></tr></thead>
+    <tbody>
+      <tr><td><code>[DERS ADI]</code></td><td>Dersin programdaki adı</td><td>Fen Bilimleri</td><td>Matematik</td></tr>
+      <tr><td><code>[KOD ÖNEKİ]</code></td><td>Programdaki ilk öğrenme çıktısı (ya da kazanım) kodunun harf kısmı. PDF'te ilk ünitenin öğrenme çıktılarına bakın. Kodda harf yoksa (ör. eski lise programında <code>9.1.1.</code>) talimatta <code>[KOD ÖNEKİ].</code> yazan iki yeri, noktasıyla birlikte silin.</td><td>FB</td><td>MAT</td></tr>
+      <tr><td><code>[SINIFLAR]</code></td><td>Programın kapsadığı sınıflar</td><td>3–8</td><td>5–8</td></tr>
+      <tr><td><code>[PROGRAM DOSYASI]</code></td><td>İndirdiğiniz PDF'in tam dosya adı, uzantısıyla</td><td>fen-bilimleri-dersi.pdf</td><td>Matematik (5-8) DÖP.pdf</td></tr>
+      <tr><td><code>[DOSYA ÖNEKİ]</code></td><td>Çalışma kâğıdı dosya adının başı. Kısa, küçük harf, Türkçe karaktersiz.</td><td>fen</td><td>mat</td></tr>
+      <tr><td><code>[AMAÇ ETİKETİ]</code></td><td>Çalışma kâğıdında amaç sorularının başlığı</td><td>Gözlem Amacı</td><td>Etkinliğin Amacı</td></tr>
+      <tr><td><code>[ÇALIŞMA KÂĞIDI BÖLÜMLERİ]</code></td><td>Çalışma kâğıdının bölümleri ve her birinde ne olacağı. Dersinize göre yazın.</td><td>"Ön Bilgi" (hazırbulunuşluk), "İnceleme / Gözlem" (adım adım yönergeler, kayıt tabloları), "Yorumlama ve Sonuç" (gerekçe isteyen sorular)</td><td>"Ön Bilgi" (hazırbulunuşluk), "Uygulama" (adım adım problem/etkinlik), "Değerlendirme" (gerekçe isteyen sorular, en sonda transfer sorusu)</td></tr>
+    </tbody>
+  </table></div>
+  <p>Dersinizde deney yapılmıyorsa "deney" / "bilimsel gözlem" satırını silebilirsiniz. Diğer kurallara dokunmanıza gerek yok.</p>
+  <details>
+    <summary>Talimatın bölümleri ne işe yarar?</summary>
+    <ul class="check">
+      <li><strong>Rolün:</strong> Gem'in kim olduğu ve yalnızca yüklü belgelere dayanacağı.</li>
+      <li><strong>Kaynaklar ve öncelik:</strong> hangi bilginin hangi dosyadan alınacağı, sınıfın PDF'te nasıl bulunacağı.</li>
+      <li><strong>Sohbet sürekliliği:</strong> "bu çıktı" gibi ifadelerin ve <code>5.3.2</code> gibi kısa kodların anlaşılması.</li>
+      <li><strong>Doğruluk kuralları (K1–K9):</strong> önce bul sonra yaz, kodu birebir aktar, kaynak göster, sınıf düzeyini ve sınırlılıkları aşma, kendi önerini "[Genel öneri]" diye işaretle.</li>
+      <li><strong>Terim eşleştirme:</strong> günlük dildeki sorunun programdaki hangi başlığa karşılık geldiği.</li>
+      <li><strong>Çalışma modları:</strong> soru-cevap, ders planı, kontrol ve çalışma kâğıdı.</li>
+      <li><strong>Üslup:</strong> sade, "siz" dili, gereksiz giriş yok.</li>
+    </ul>
+  </details>
+
+  <h2 id="adim-4">4. Gem'i oluşturun</h2>
+  <ol class="steps">
+    <li>Gemini'da sol menüyü açın (sol üstteki ☰) ve <strong>Gem'ler</strong>'e, ardından <strong>Yeni Gem</strong>'e tıklayın.</li>
+    <li><strong>Ad:</strong> <code>Maarif Danışmanı – Matematik</code> gibi, kendi dersinizin adıyla.</li>
+    <li><strong>Talimatlar:</strong> uyarladığınız talimat dosyasında tümünü seçin (⌘A / Ctrl+A), kopyalayın ve bu alana yapıştırın. Alanda metnin <u>yalnızca bir kez</u> bulunduğunu kontrol edin.</li>
+    <li><strong>Bilgi:</strong> artı (+) simgesiyle üç dosyayı yükleyin: program PDF'iniz, <span class="file">01_Maarif_Modeli_Ortak_Metin.pdf</span>, <span class="file">ws_olustur.py</span>. Talimat dosyasını yüklemeyin; o zaten Talimatlar alanında.</li>
+    <li>Sağ üstteki <strong>Kaydet</strong>'e tıklayın. Gem sol menüde, Gem'ler altında görünür.</li>
   </ol>
 
-  <h2>2. Programla ilgili sorun</h2>
-  <p>Kısa kod yazabilirsiniz: <code>5.3.2</code>, <code>FB.5.3.2.</code> olarak anlaşılır. Aynı sohbette devam ederseniz "bu çıktı" dediğinizde önceki çıktı anlaşılır.</p>
-  <div class="prompt"><q>5.3.2 numaralı öğrenme çıktısı için ölçülebilir öğrenci performanslarını ve anahtar kelimeleri listeler misin?</q><button class="copy" type="button">Kopyala</button></div>
+  <h2 id="adim-5">5. Test edin</h2>
+  <p>Gem'i sol menüden açın, model seçicide <strong>Pro</strong> olduğundan emin olun. Aşağıdaki istekleri sırayla gönderin; köşeli parantezli yerlere kendi sınıfınızdan bir öğrenme çıktısı kodu yazın (ör. <code>5.1.2</code>).</p>
+  <h3>Soru ve takip sorusu</h3>
+  <div class="prompt"><q>[kendi öğrenme çıktı kodunuz] numaralı öğrenme çıktısı için ölçülebilir öğrenci performanslarını ve anahtar kelimeleri listeler misin?</q><button class="copy" type="button">Kopyala</button></div>
   <div class="prompt"><q>Bu öğrenme çıktısı için MEB kaç ders saati ve hangi öğrenme yaşantılarını öneriyor?</q><button class="copy" type="button">Kopyala</button></div>
-  <div class="prompt"><q>Bu çıktı için 2 ders saatlik bir ders planı hazırla. Sınıfımda 24 öğrenci var, laboratuvar var.</q><button class="copy" type="button">Kopyala</button></div>
-  <div class="prompt"><q>Aşağıdaki etkinliğimi programa uygunluk açısından kontrol et: [etkinliği yapıştırın]</q><button class="copy" type="button">Kopyala</button></div>
-  <div class="note"><p>Programda ders saati <u>ünite</u> düzeyinde verilir. Gem çıktıya düşen süreyi "[Genel öneri]" etiketiyle önerir; o kısım programdan değil, Gem'in kendi önerisidir.</p></div>
+  <p>İlk cevaptaki kodu ve cümleleri PDF'le karşılaştırın; birebir aynı olmalı. İkinci soruda Gem önceki çıktıyı hatırlamalı.</p>
+  <div class="note"><p>Programda ders saati genellikle <u>ünite</u> düzeyinde verilir. Gem çıktıya düşen süreyi "[Genel öneri]" etiketiyle önerir; o kısım programdan değil, Gem'in kendi önerisidir.</p></div>
 
-  <h2>3. Çalışma kâğıdı isteyin</h2>
+  <h3>Çalışma kâğıdı</h3>
   <p>Yeni bir sohbet açın ve tek mesajda şunları yazın: <strong>öğrenme çıktısı, ders saati, sınıf/şube, dönem ve hafta, toplam puan, elinizdeki malzemeler</strong>.</p>
-  <div class="prompt"><q>FB.7.4.2 için 2 ders saatlik çalışma kâğıdı hazırla. Sınıf 7/A-C, 2. dönem 8. hafta, toplam 50 puan, 2025-2026 eğitim öğretim yılı. Laboratuvarda ince ve kalın kenarlı mercekler, el feneri ve beyaz karton var.</q><button class="copy" type="button">Kopyala</button></div>
+  <div class="prompt"><q>[kendi öğrenme çıktı kodunuz] için 2 ders saatlik çalışma kâğıdı hazırla. Sınıf [şube], [dönem] [hafta], toplam 50 puan, 2025-2026 eğitim öğretim yılı. Sınıfta [malzemeler] var.</q><button class="copy" type="button">Kopyala</button></div>
   <p>Yaklaşık 1–3 dakika sürer. Yanıtta bir <strong>DOCX dosya kartı</strong> ve bir <strong>Öğretmen Notu</strong> gelir.</p>
-
-  <h2>4. İndirin</h2>
   <ol class="steps">
     <li>Dosya kartını açın ve sağ üstteki <strong>İndir</strong> simgesine tıklayın. Google Dokümanlar'da açmak için <strong>Drive'a aktar</strong> seçeneğini kullanın.</li>
     <li>Dosya kartı çıkmazsa aynı sohbette şunu yazın: <q>.docx dosyası olarak ver.</q></li>
@@ -49,24 +130,46 @@
   </ol>
   <figure>
     <img src="assets/ornek-calisma-kagidi.jpg" width="670" height="612" alt="Gem'in ürettiği örnek çalışma kâğıdı: TED Bodrum Koleji logosu, başlık, künye tablosu, gözlem amacı, malzemeler ve ilk soru ile cevap kutusu">
-    <figcaption>Örnek: FB.7.4.2 için üretilen dosyanın ilk sayfası. Logo, künye, yazı tipi ve kutu boyutları her dosyada aynı.</figcaption>
+    <figcaption>Örnek: Fen Bilimleri FB.7.4.2 için üretilen dosyanın ilk sayfası. Başlıkta sizin dersinizin adı yazar; logo, künye, yazı tipi ve kutu boyutları her derste aynı.</figcaption>
   </figure>
 
-  <h2>5. Yazdırmadan önce kontrol edin</h2>
+  <h3>Yazdırmadan önce kontrol edin</h3>
   <ul class="check">
+    <li>Başlıkta dersinizin adı yazıyor mu?</li>
     <li>Öğrenme çıktısı kodu ve süreç bileşenleri programla aynı mı?</li>
     <li>Sorular sınıf düzeyine ve programdaki sınırlılıklara uyuyor mu?</li>
     <li>Tablo başlıkları ve kutular yönergelerle eşleşiyor mu?</li>
     <li>Puanlar mantıklı dağılmış mı?</li>
-    <li>Değişken bilinçli olarak değiştirilip ölçülmüyorsa çalışmaya "deney" değil "bilimsel gözlem" denmiş mi?</li>
+    <li>Fen için: değişken bilinçli olarak değiştirilip ölçülmüyorsa çalışmaya "deney" değil "bilimsel gözlem" denmiş mi?</li>
   </ul>
+  <p>Gem'in başka neler yapabildiğini (ders planı, etkinlik kontrolü) <a href="rehber.html">rehberde</a> bulabilirsiniz.</p>
 
   <h2>Unutmayın</h2>
   <ol class="steps">
     <li><strong>Öğrenci bilgisi yazmayın.</strong> Ad, not veya sağlık bilgisi girmeyin. "2 kaynaştırma öğrencisi var" demek yeterli.</li>
     <li><strong>Konu değişince yeni sohbet açın.</strong> Belgeler her sohbette hazırdır.</li>
     <li><strong>Pro olmayan hesapta çalışmaz.</strong> Şablon tutmaz ve önceki soru unutulur.</li>
+    <li><strong>Talimatı değiştirirseniz</strong> Gem'ler'de Gem'inizin yanındaki kalem simgesiyle düzenleyin ve <strong>Kaydet</strong>'e basın.</li>
   </ol>
+
+  <h2 id="sorun-giderme">Sorun giderme</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Durum</th><th>Çözüm</th></tr></thead>
+    <tbody>
+      <tr><td>Hesapta "Pro" yok</td><td>Sağ üstteki profil resminden Pro hesabına geçin. Hiçbir hesabınızda Pro yoksa okul yönetimine başvurun.</td></tr>
+      <tr><td>Model "Flash" seçili</td><td>Mesaj kutusunun altındaki seçiciden <strong>Pro</strong>.</td></tr>
+      <tr><td>Sol menüde "Gem'ler" ya da "Yeni Gem" yok</td><td>Pro hesapta olduğunuzu kontrol edin. Sayfayı yenileyin. Menü kapalıysa sol üstteki ☰ ile açın.</td></tr>
+      <tr><td>Dosya yüklenmiyor</td><td>Dosyaların indirilenler klasöründe olduğunu, PDF'in açılabildiğini kontrol edin. Tek tek yükleyin. <span class="file">ws_olustur.py</span> yüklenmezse sürükleyip bırakmayı deneyin.</td></tr>
+      <tr><td>Talimat iki kez yapıştırıldı</td><td>Talimatlar alanını tümüyle silin (⌘A / Ctrl+A, Sil) ve bir kez yapıştırın.</td></tr>
+      <tr><td>Kodlar yanlış önekle geliyor (ör. MAT yerine M)</td><td>Talimattaki <code>[KOD ÖNEKİ]</code> değerini PDF'teki kodla karşılaştırın; Gem'i düzenleyip kaydedin.</td></tr>
+      <tr><td>Yanlış sınıftan cevap</td><td>Kodu tam yazın (ör. <code>MAT.6.2.1.</code>) ve sınıfı açıkça söyleyin. Sürerse: PDF'ten yalnızca kendi sınıf(lar)ınızın sayfalarını ayrı bir PDF olarak kaydedip (Yazdır → PDF olarak kaydet → sayfa aralığı) program PDF'inin yerine yükleyin.</td></tr>
+      <tr><td>Dosya kartı gelmedi, yalnızca metin var</td><td>Aynı sohbette: <q>.docx dosyası olarak ver.</q></td></tr>
+      <tr><td>Çalışma kâğıdı başlığında "Fen Bilimleri" yazıyor</td><td>Talimatta <code>[DERS ADI]</code> doldurulmamış ya da çalışma kâğıdı satırından silinmiş. Talimatı kontrol edip Gem'i kaydedin.</td></tr>
+      <tr><td>"Bu konuda yardımcı olamam" türü ret</td><td>Yeni sohbet açın, modelin Pro olduğunu kontrol edin, isteği yeniden gönderin.</td></tr>
+      <tr><td>Cevap 3 dakikadan uzun sürüyor</td><td>Bekleyin; 5 dakikayı geçerse sayfayı yenileyip yeniden gönderin.</td></tr>
+      <tr><td>Kullanım sınırı mesajı</td><td>Pro'nun da günlük sınırı var; birkaç saat sonra yenilenir.</td></tr>
+    </tbody>
+  </table></div>
 
   <footer class="site"><a href="./">Ana sayfa</a> · <a href="rehber.html">Ayrıntılı rehber</a></footer>
 </main>
