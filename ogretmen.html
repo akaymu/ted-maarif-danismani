@@ -8,6 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
 <link rel="stylesheet" href="assets/site.css">
+<style>
+.files { display: grid; gap: 8px; padding: 0 14px 14px; list-style: none; margin: 0; }
+.files a { display: flex; justify-content: space-between; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; text-decoration: none; }
+.files a span:last-child { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.files a span:first-child { overflow-wrap: anywhere; min-width: 0; }
+</style>
 </head>
 <body>
 <header class="topbar"><div class="in">
@@ -41,38 +47,202 @@
   <div class="note"><p>"Pro" görünmüyorsa devam etmeyin; önce doğru hesaba geçin. Sorun sürerse <a href="#sorun-giderme">sorun giderme</a> bölümüne bakın.</p></div>
 
   <h2 id="adim-2">2. Belgeleri indirin</h2>
-  <p>Dört dosya indireceksiniz: üçünü Gem'e yükleyecek, birini (talimat) uyarlayıp yapıştıracaksınız. Hepsini bilgisayarınızda aynı klasöre (ör. <strong>İndirilenler</strong>) indirin.</p>
+  <p>Hepsini bilgisayarınızda aynı klasöre (ör. <strong>İndirilenler</strong>) indirin.</p>
+  <h3>Herkes için aynı dosyalar</h3>
   <div class="tbl"><table>
-    <thead><tr><th>Dosya</th><th>Nereden</th><th>Ne işe yarar</th></tr></thead>
+    <thead><tr><th>Dosya</th><th>Ne işe yarar</th></tr></thead>
     <tbody>
-      <tr><td><strong>Dersinizin öğretim programı</strong> (PDF)</td><td>MEB, aşağıdaki adımlarla</td><td>Öğrenme çıktıları, süreler, yaşantılar. Gem'in asıl kaynağı.</td></tr>
-      <tr><td><a class="file" href="dosyalar/01_Maarif_Modeli_Ortak_Metin.pdf" download>01_Maarif_Modeli_Ortak_Metin.pdf</a></td><td>Bu site</td><td>Beceriler, eğilimler, değerler, ölçme ilkeleri. Her ders için aynı.</td></tr>
-      <tr><td><a class="file" href="dosyalar/ws_olustur.py" download>ws_olustur.py</a></td><td>Bu site</td><td>Çalışma kâğıdını okulun şablonunda (logo, künye, kutular) üretir. Açmanıza gerek yok.</td></tr>
-      <tr><td><a class="file" href="dosyalar/gem-talimat-sablon.txt" download>gem-talimat-sablon.txt</a></td><td>Bu site</td><td>Gem'in kuralları. 3. adımda kendi dersinize uyarlayacaksınız.</td></tr>
+      <tr><td><a class="file" href="dosyalar/01_Maarif_Modeli_Ortak_Metin_1.pdf" download>01_Maarif_Modeli_Ortak_Metin_1.pdf</a><br><a class="file" href="dosyalar/01_Maarif_Modeli_Ortak_Metin_2.pdf" download>01_Maarif_Modeli_Ortak_Metin_2.pdf</a></td><td>Ortak Metin, iki parça: beceriler, eğilimler, değerler, ölçme ilkeleri. İkisini de indirin.</td></tr>
+      <tr><td><a class="file" href="dosyalar/ws_olustur.py" download>ws_olustur.py</a></td><td>Çalışma kâğıdını okulun şablonunda (logo, künye, kutular) üretir. Açmanıza gerek yok.</td></tr>
+      <tr><td><a class="file" href="dosyalar/gem-talimat-sablon.txt" download>gem-talimat-sablon.txt</a></td><td>Gem'in kuralları. 3. adımda kendi dersinize uyarlayacaksınız.</td></tr>
     </tbody>
   </table></div>
 
-  <h3>Programı MEB'den indirme</h3>
-  <ol class="steps" id="meb-yolu">
-    <li><a href="https://mufredat.meb.gov.tr" target="_blank" rel="noopener">mufredat.meb.gov.tr</a> adresini açın.</li>
-    <li>Üst menüden <strong>Öğretim Programları</strong>'na tıklayın.</li>
-    <li>Önce adı <strong>TYMM</strong> ile başlayan sekmeye bakın (ör. <strong>TYMM Temel Eğitim</strong>). Bunlar Türkiye Yüzyılı Maarif Modeli programlarıdır. Dersiniz orada varsa onu seçin, ör. <em>[TYMM] ORTAOKUL MATEMATİK DERSİ (5-8) (2026)</em>.</li>
-    <li>Dersiniz TYMM sekmelerinde yoksa eski programı kullanın: ortaokul için <strong>Temel Eğitim</strong>, lise için <strong>Ortaöğretim</strong> sekmesi.</li>
-    <li>Dersin satırındaki <strong>İndir</strong>'e tıklayın. PDF yeni sekmede açılırsa sağ üstteki indirme simgesiyle bilgisayarınıza kaydedin.</li>
-  </ol>
-  <p><strong>Programı bölmeyin.</strong> Tüm sınıfları kapsayan tek PDF'i olduğu gibi yükleyeceksiniz; Gem sınıfı dosyanın içindeki başlıktan bulur.</p>
-
-  <h3>Programınız hangi model?</h3>
-  <p>İndirdiğiniz PDF'i açın ve bir öğrenme hedefine bakın:</p>
+  <h3 id="programlar">Dersinizin programı</h3>
+  <p>Programlar MEB'in güncel Maarif Modeli programlarından (mufredat.meb.gov.tr) alınıp bölündü. Gem çok büyük bir dosyanın yalnızca baş kısmını okuyabildiği için her program <strong>genel bölüm</strong> ve <strong>sınıf</strong> dosyalarına ayrıldı. Dersinizi açın ve şunları indirin:</p>
   <ul class="check">
-    <li><strong>"Öğrenme çıktısı"</strong> ve <strong>"süreç bileşenleri"</strong> yazıyorsa: Türkiye Yüzyılı Maarif Modeli programı. Bu sayfa tam olarak buna göre yazıldı.</li>
-    <li><strong>"Kazanım"</strong> yazıyorsa: eski program. Kurulum aynı; talimat bunu tanır ve kazanım kodlarıyla çalışır. Test adımında "öğrenme çıktısı" yerine "kazanım" deyin; eski programda kodlar dört basamaklı olabilir (ör. <code>9.1.1.1</code>).</li>
+    <li><strong>Genel bölüm</strong> (ünite/süre tablosu burada).</li>
+    <li><strong>Yalnızca okuttuğunuz sınıfların</strong> dosyaları. Bir sınıf birden çok parçaysa (ör. İngilizce) bütün parçalarını indirin.</li>
+    <li>Varsa <strong>Ekler</strong> dosyası isteğe bağlıdır.</li>
   </ul>
+  <h3>Ortaokul</h3>
+  <details>
+    <summary>Fen Bilimleri (3–8)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/00_Fen_Programi_Genel_Bolum_ve_Sure_Tablosu.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>2,0 MB</span></a></li>
+      <li><a href="dosyalar/03_Fen_Programi_3_Sinif.pdf" download><span>3. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/04_Fen_Programi_4_Sinif.pdf" download><span>4. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/05_Fen_Programi_5_Sinif.pdf" download><span>5. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/06_Fen_Programi_6_Sinif.pdf" download><span>6. sınıf</span><span>0,6 MB</span></a></li>
+      <li><a href="dosyalar/07_Fen_Programi_7_Sinif.pdf" download><span>7. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/08_Fen_Programi_8_Sinif.pdf" download><span>8. sınıf</span><span>0,6 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>Matematik (5–8)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/ortaokul-matematik/ortaokul-matematik_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>1,7 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-matematik/ortaokul-matematik_05_sinif.pdf" download><span>5. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-matematik/ortaokul-matematik_06_sinif.pdf" download><span>6. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-matematik/ortaokul-matematik_07_sinif.pdf" download><span>7. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-matematik/ortaokul-matematik_08_sinif.pdf" download><span>8. sınıf</span><span>1,3 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>Türkçe (5–8)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/ortaokul-turkce/ortaokul-turkce_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>1,9 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-turkce/ortaokul-turkce_05_sinif.pdf" download><span>5. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-turkce/ortaokul-turkce_06_sinif.pdf" download><span>6. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-turkce/ortaokul-turkce_07_sinif.pdf" download><span>7. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-turkce/ortaokul-turkce_08_sinif.pdf" download><span>8. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-turkce/ortaokul-turkce_99_ekler.pdf" download><span>Ekler</span><span>6,0 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>Sosyal Bilgiler (4–7)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/ortaokul-sosyal-bilgiler/ortaokul-sosyal-bilgiler_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>1,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-sosyal-bilgiler/ortaokul-sosyal-bilgiler_04_sinif.pdf" download><span>4. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-sosyal-bilgiler/ortaokul-sosyal-bilgiler_05_sinif.pdf" download><span>5. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-sosyal-bilgiler/ortaokul-sosyal-bilgiler_06_sinif.pdf" download><span>6. sınıf</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-sosyal-bilgiler/ortaokul-sosyal-bilgiler_07_sinif.pdf" download><span>7. sınıf</span><span>2,2 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>T.C. İnkılap Tarihi ve Atatürkçülük (8)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/ortaokul-inkilap-tarihi/ortaokul-inkilap-tarihi_tum.pdf" download><span>Programın tamamı (tek dosya)</span><span>2,1 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>İngilizce (5–8)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>2,1 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_05_sinif_1.pdf" download><span>5. sınıf · parça 1/3</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_05_sinif_2.pdf" download><span>5. sınıf · parça 2/3</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_05_sinif_3.pdf" download><span>5. sınıf · parça 3/3</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_06_sinif_1.pdf" download><span>6. sınıf · parça 1/3</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_06_sinif_2.pdf" download><span>6. sınıf · parça 2/3</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_06_sinif_3.pdf" download><span>6. sınıf · parça 3/3</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_07_sinif_1.pdf" download><span>7. sınıf · parça 1/3</span><span>0,7 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_07_sinif_2.pdf" download><span>7. sınıf · parça 2/3</span><span>0,6 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_07_sinif_3.pdf" download><span>7. sınıf · parça 3/3</span><span>0,6 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_08_sinif_1.pdf" download><span>8. sınıf · parça 1/3</span><span>0,6 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_08_sinif_2.pdf" download><span>8. sınıf · parça 2/3</span><span>0,6 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_08_sinif_3.pdf" download><span>8. sınıf · parça 3/3</span><span>0,6 MB</span></a></li>
+      <li><a href="dosyalar/programlar/ortaokul-ingilizce/ortaokul-ingilizce_99_ekler.pdf" download><span>Ekler</span><span>1,1 MB</span></a></li>
+    </ul>
+  </details>
+  <h3>Lise</h3>
+  <details>
+    <summary>Matematik (9–12)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/lise-matematik/lise-matematik_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>3,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-matematik/lise-matematik_09_sinif.pdf" download><span>9. sınıf</span><span>0,7 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-matematik/lise-matematik_10_sinif.pdf" download><span>10. sınıf</span><span>0,7 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-matematik/lise-matematik_11_sinif.pdf" download><span>11. sınıf</span><span>0,6 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-matematik/lise-matematik_12_sinif.pdf" download><span>12. sınıf</span><span>1,7 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>Türk Dili ve Edebiyatı (9–12)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/lise-turk-dili-edebiyati/lise-turk-dili-edebiyati_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>2,0 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-turk-dili-edebiyati/lise-turk-dili-edebiyati_hazirlik.pdf" download><span>Hazırlık sınıfı</span><span>0,3 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-turk-dili-edebiyati/lise-turk-dili-edebiyati_09_sinif.pdf" download><span>9. sınıf</span><span>0,3 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-turk-dili-edebiyati/lise-turk-dili-edebiyati_10_sinif.pdf" download><span>10. sınıf</span><span>0,3 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-turk-dili-edebiyati/lise-turk-dili-edebiyati_11_sinif.pdf" download><span>11. sınıf</span><span>0,3 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-turk-dili-edebiyati/lise-turk-dili-edebiyati_12_sinif.pdf" download><span>12. sınıf</span><span>1,4 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>Tarih (9–11)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/lise-tarih/lise-tarih_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>1,7 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-tarih/lise-tarih_09_sinif.pdf" download><span>9. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-tarih/lise-tarih_10_sinif.pdf" download><span>10. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-tarih/lise-tarih_11_sinif.pdf" download><span>11. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-tarih/lise-tarih_99_ekler.pdf" download><span>Ekler</span><span>1,0 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>Coğrafya (9–12)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/lise-cografya/lise-cografya_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>1,7 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-cografya/lise-cografya_09_sinif.pdf" download><span>9. sınıf</span><span>0,3 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-cografya/lise-cografya_10_sinif.pdf" download><span>10. sınıf</span><span>0,3 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-cografya/lise-cografya_11_sinif.pdf" download><span>11. sınıf</span><span>0,3 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-cografya/lise-cografya_12_sinif.pdf" download><span>12. sınıf</span><span>1,3 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>İngilizce (9–12)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>2,0 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_09_sinif_1.pdf" download><span>9. sınıf · parça 1/4</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_09_sinif_2.pdf" download><span>9. sınıf · parça 2/4</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_09_sinif_3.pdf" download><span>9. sınıf · parça 3/4</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_09_sinif_4.pdf" download><span>9. sınıf · parça 4/4</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_10_sinif_1.pdf" download><span>10. sınıf · parça 1/4</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_10_sinif_2.pdf" download><span>10. sınıf · parça 2/4</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_10_sinif_3.pdf" download><span>10. sınıf · parça 3/4</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_10_sinif_4.pdf" download><span>10. sınıf · parça 4/4</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_11_sinif_1.pdf" download><span>11. sınıf · parça 1/4</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_11_sinif_2.pdf" download><span>11. sınıf · parça 2/4</span><span>0,5 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_11_sinif_3.pdf" download><span>11. sınıf · parça 3/4</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_11_sinif_4.pdf" download><span>11. sınıf · parça 4/4</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_12_sinif_1.pdf" download><span>12. sınıf · parça 1/3</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_12_sinif_2.pdf" download><span>12. sınıf · parça 2/3</span><span>0,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-ingilizce/lise-ingilizce_12_sinif_3.pdf" download><span>12. sınıf · parça 3/3</span><span>0,4 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>Fizik (9–12)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/lise-fizik/lise-fizik_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>1,7 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-fizik/lise-fizik_09_sinif.pdf" download><span>9. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-fizik/lise-fizik_10_sinif.pdf" download><span>10. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-fizik/lise-fizik_11_sinif.pdf" download><span>11. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-fizik/lise-fizik_12_sinif.pdf" download><span>12. sınıf</span><span>1,0 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>Kimya (9–12)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/lise-kimya/lise-kimya_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>1,8 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-kimya/lise-kimya_09_sinif.pdf" download><span>9. sınıf</span><span>0,3 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-kimya/lise-kimya_10_sinif.pdf" download><span>10. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-kimya/lise-kimya_11_sinif.pdf" download><span>11. sınıf</span><span>0,3 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-kimya/lise-kimya_12_sinif.pdf" download><span>12. sınıf</span><span>1,2 MB</span></a></li>
+    </ul>
+  </details>
+  <details>
+    <summary>Biyoloji (9–12)</summary>
+    <ul class="files">
+      <li><a href="dosyalar/programlar/lise-biyoloji/lise-biyoloji_00_genel.pdf" download><span>Genel bölüm (her öğretmen indirir)</span><span>2,4 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-biyoloji/lise-biyoloji_09_sinif.pdf" download><span>9. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-biyoloji/lise-biyoloji_10_sinif.pdf" download><span>10. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-biyoloji/lise-biyoloji_11_sinif.pdf" download><span>11. sınıf</span><span>0,2 MB</span></a></li>
+      <li><a href="dosyalar/programlar/lise-biyoloji/lise-biyoloji_12_sinif.pdf" download><span>12. sınıf</span><span>1,8 MB</span></a></li>
+    </ul>
+  </details>
+  <div class="note"><p><strong>Bir Gem'e en fazla 10 dosya yüklenir.</strong> Ortak Metin (2) ve <span class="file">ws_olustur.py</span> (1) ile birlikte sayın. Sınır aşılıyorsa her sınıf için ayrı bir Gem kurun (ör. "Maarif Danışmanı – İngilizce 9").</p></div>
+  <details>
+    <summary>Dersim listede yok</summary>
+    <ol class="steps" style="padding:0 14px 0 2.2em">
+      <li><a href="https://mufredat.meb.gov.tr" target="_blank" rel="noopener">mufredat.meb.gov.tr</a> → <strong>Öğretim Programları</strong>. Önce adı <strong>TYMM</strong> ile başlayan sekmeye bakın; dersiniz yoksa eski programı (<strong>Temel Eğitim</strong> / <strong>Ortaöğretim</strong>) indirin.</li>
+      <li>PDF'i Chrome'da açın. İçindekiler sayfasından genel bölümün ve sınıfınızın sayfa aralığını bulun.</li>
+      <li><strong>Yazdır</strong> (⌘P / Ctrl+P) → Hedef: <strong>PDF olarak kaydet</strong> → Sayfalar: <strong>Özel</strong>, aralığı yazın (ör. <code>1-13</code>) → <strong>Kaydet</strong>. Genel bölüm ve her sınıf için ayrı ayrı yapın; bir dosya 60 sayfayı geçmesin.</li>
+      <li>Dosya adlarını listedekiler gibi verin: <code>dersadi_00_genel.pdf</code>, <code>dersadi_07_sinif.pdf</code>.</li>
+      <li>PDF'te "öğrenme çıktısı" yerine <strong>"kazanım"</strong> yazıyorsa eski programdır; kurulum aynı, test adımında "kazanım" deyin.</li>
+    </ol>
+  </details>
 
   <h2 id="adim-3">3. Talimatı uyarlayın</h2>
   <ol class="steps">
     <li><span class="file">gem-talimat-sablon.txt</span> dosyasını açın: Mac'te <strong>TextEdit</strong>, Windows'ta <strong>Not Defteri</strong>. Word kullanmayın.</li>
-    <li>Köşeli parantezli büyük harfli yedi alanı aşağıdaki tabloya göre değiştirin. Köşeli parantezleri de silin.</li>
+    <li>Köşeli parantezli büyük harfli altı alanı aşağıdaki tabloya göre değiştirin. Köşeli parantezleri de silin.</li>
     <li>Dosyayı kaydedin.</li>
     <li><strong>Kontrol:</strong> düzenleyicide arama (Mac: ⌘F, Windows: Ctrl+F) açın ve <code>[</code> arayın. Yalnızca <code>[Genel öneri]</code>, <code>[ünite/bölüm]</code>, <code>[0]</code> ve <code>[5. Sınıf – 3. Ünite – Öğrenme Çıktıları]</code> kalmalı. Büyük harfli bir köşeli parantez kaldıysa doldurmayı unuttunuz.</li>
   </ol>
@@ -80,9 +250,8 @@
     <thead><tr><th>Alan</th><th>Ne yazılır, nereden bulunur</th><th>Fen örneği</th><th>Matematik örneği</th></tr></thead>
     <tbody>
       <tr><td><code>[DERS ADI]</code></td><td>Dersin programdaki adı</td><td>Fen Bilimleri</td><td>Matematik</td></tr>
-      <tr><td><code>[KOD ÖNEKİ]</code></td><td>Programdaki ilk öğrenme çıktısı (ya da kazanım) kodunun harf kısmı. PDF'te ilk ünitenin öğrenme çıktılarına bakın. Kodda harf yoksa (ör. eski lise programında <code>9.1.1.</code>) talimatta <code>[KOD ÖNEKİ].</code> yazan iki yeri, noktasıyla birlikte silin.</td><td>FB</td><td>MAT</td></tr>
+      <tr><td><code>[KOD ÖNEKİ]</code></td><td>Öğrenme çıktısı kodunun harf kısmı. Sınıf dosyanızda ilk öğrenme çıktısına bakın (ör. <code>FİZ.9.1.1.</code> → <code>FİZ</code>). Kodda harf yoksa talimatta <code>[KOD ÖNEKİ].</code> yazan iki yeri, noktasıyla birlikte silin.</td><td>FB</td><td>MAT</td></tr>
       <tr><td><code>[SINIFLAR]</code></td><td>Programın kapsadığı sınıflar</td><td>3–8</td><td>5–8</td></tr>
-      <tr><td><code>[PROGRAM DOSYASI]</code></td><td>İndirdiğiniz PDF'in tam dosya adı, uzantısıyla</td><td>fen-bilimleri-dersi.pdf</td><td>Matematik (5-8) DÖP.pdf</td></tr>
       <tr><td><code>[DOSYA ÖNEKİ]</code></td><td>Çalışma kâğıdı dosya adının başı. Kısa, küçük harf, Türkçe karaktersiz.</td><td>fen</td><td>mat</td></tr>
       <tr><td><code>[AMAÇ ETİKETİ]</code></td><td>Çalışma kâğıdında amaç sorularının başlığı</td><td>Gözlem Amacı</td><td>Etkinliğin Amacı</td></tr>
       <tr><td><code>[ÇALIŞMA KÂĞIDI BÖLÜMLERİ]</code></td><td>Çalışma kâğıdının bölümleri ve her birinde ne olacağı. Dersinize göre yazın.</td><td>"Ön Bilgi" (hazırbulunuşluk), "İnceleme / Gözlem" (adım adım yönergeler, kayıt tabloları), "Yorumlama ve Sonuç" (gerekçe isteyen sorular)</td><td>"Ön Bilgi" (hazırbulunuşluk), "Uygulama" (adım adım problem/etkinlik), "Değerlendirme" (gerekçe isteyen sorular, en sonda transfer sorusu)</td></tr>
@@ -93,7 +262,7 @@
     <summary>Talimatın bölümleri ne işe yarar?</summary>
     <ul class="check">
       <li><strong>Rolün:</strong> Gem'in kim olduğu ve yalnızca yüklü belgelere dayanacağı.</li>
-      <li><strong>Kaynaklar ve öncelik:</strong> hangi bilginin hangi dosyadan alınacağı, sınıfın PDF'te nasıl bulunacağı.</li>
+      <li><strong>Kaynaklar ve öncelik:</strong> hangi bilginin hangi dosyadan alınacağı; bir sınıfla ilgili soruda yalnızca o sınıfın dosyasına bakılması.</li>
       <li><strong>Sohbet sürekliliği:</strong> "bu çıktı" gibi ifadelerin ve <code>5.3.2</code> gibi kısa kodların anlaşılması.</li>
       <li><strong>Doğruluk kuralları (K1–K9):</strong> önce bul sonra yaz, kodu birebir aktar, kaynak göster, sınıf düzeyini ve sınırlılıkları aşma, kendi önerini "[Genel öneri]" diye işaretle.</li>
       <li><strong>Terim eşleştirme:</strong> günlük dildeki sorunun programdaki hangi başlığa karşılık geldiği.</li>
@@ -107,7 +276,7 @@
     <li>Gemini'da sol menüyü açın (sol üstteki ☰) ve <strong>Gem'ler</strong>'e, ardından <strong>Yeni Gem</strong>'e tıklayın.</li>
     <li><strong>Ad:</strong> <code>Maarif Danışmanı – Matematik</code> gibi, kendi dersinizin adıyla.</li>
     <li><strong>Talimatlar:</strong> uyarladığınız talimat dosyasında tümünü seçin (⌘A / Ctrl+A), kopyalayın ve bu alana yapıştırın. Alanda metnin <u>yalnızca bir kez</u> bulunduğunu kontrol edin.</li>
-    <li><strong>Bilgi:</strong> artı (+) simgesiyle üç dosyayı yükleyin: program PDF'iniz, <span class="file">01_Maarif_Modeli_Ortak_Metin.pdf</span>, <span class="file">ws_olustur.py</span>. Talimat dosyasını yüklemeyin; o zaten Talimatlar alanında.</li>
+    <li><strong>Bilgi:</strong> artı (+) simgesiyle şunları yükleyin: programınızın genel bölümü ve sınıf dosyalarınız, <span class="file">01_Maarif_Modeli_Ortak_Metin_1.pdf</span>, <span class="file">01_Maarif_Modeli_Ortak_Metin_2.pdf</span>, <span class="file">ws_olustur.py</span>. En fazla 10 dosya. Talimat dosyasını yüklemeyin; o zaten Talimatlar alanında.</li>
     <li>Sağ üstteki <strong>Kaydet</strong>'e tıklayın. Gem sol menüde, Gem'ler altında görünür.</li>
   </ol>
 
@@ -164,7 +333,9 @@
       <tr><td>Dosya yüklenmiyor</td><td>Dosyaların indirilenler klasöründe olduğunu, PDF'in açılabildiğini kontrol edin. Tek tek yükleyin. <span class="file">ws_olustur.py</span> yüklenmezse sürükleyip bırakmayı deneyin.</td></tr>
       <tr><td>Talimat iki kez yapıştırıldı</td><td>Talimatlar alanını tümüyle silin (⌘A / Ctrl+A, Sil) ve bir kez yapıştırın.</td></tr>
       <tr><td>Kodlar yanlış önekle geliyor (ör. MAT yerine M)</td><td>Talimattaki <code>[KOD ÖNEKİ]</code> değerini PDF'teki kodla karşılaştırın; Gem'i düzenleyip kaydedin.</td></tr>
-      <tr><td>Yanlış sınıftan cevap</td><td>Kodu tam yazın (ör. <code>MAT.6.2.1.</code>) ve sınıfı açıkça söyleyin. Sürerse: PDF'ten yalnızca kendi sınıf(lar)ınızın sayfalarını ayrı bir PDF olarak kaydedip (Yazdır → PDF olarak kaydet → sayfa aralığı) program PDF'inin yerine yükleyin.</td></tr>
+      <tr><td>Yanlış sınıftan cevap</td><td>Kodu tam yazın (ör. <code>MAT.6.2.1.</code>) ve sınıfı açıkça söyleyin. Bilgi bölümünde o sınıfın dosyasının yüklü olduğunu kontrol edin.</td></tr>
+      <tr><td>"Bunu programda bulamadım", "belge şu sayfada kesiliyor"</td><td>Yüklü dosya Gem'in okuyabileceğinden büyük. Programı MEB'den tek parça indirdiyseniz yerine bu sayfadaki <a href="#programlar">bölünmüş dosyaları</a> yükleyin.</td></tr>
+      <tr><td>"En fazla 10 dosya" uyarısı</td><td>Her sınıf için ayrı bir Gem kurun; her birine genel bölüm, o sınıfın dosyaları, Ortak Metin (2) ve <span class="file">ws_olustur.py</span>.</td></tr>
       <tr><td>Dosya kartı gelmedi, yalnızca metin var</td><td>Aynı sohbette: <q>.docx dosyası olarak ver.</q></td></tr>
       <tr><td>Çalışma kâğıdı başlığında "Fen Bilimleri" yazıyor</td><td>Talimatta <code>[DERS ADI]</code> doldurulmamış ya da çalışma kâğıdı satırından silinmiş. Talimatı kontrol edip Gem'i kaydedin.</td></tr>
       <tr><td>"Bu konuda yardımcı olamam" türü ret</td><td>Yeni sohbet açın, modelin Pro olduğunu kontrol edin, isteği yeniden gönderin.</td></tr>

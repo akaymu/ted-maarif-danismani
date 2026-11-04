@@ -110,7 +110,7 @@ tr.hands td { background: var(--soft); }
   <div class="grid2">
     <ul>
       <li><b>Talimat:</b> önce belgede bul, kodu birebir yaz, kaynak göster, kendi önerini "[Genel öneri]" diye işaretle</li>
-      <li><b>Dersinizin programı:</b> MEB'den tek PDF</li>
+      <li><b>Dersinizin programı:</b> genel bölüm ve sınıf dosyaları</li>
       <li><b>Ortak Metin:</b> beceriler, eğilimler, değerler</li>
     </ul>
     <div class="box"><h3>ws_olustur.py</h3><p>Çalışma kâğıdı üreticisi. Okulun şablonu içinde.</p><p class="muted" style="margin:0">Gemini yalnızca içeriği yazar. Logo, A4, künye, kutular ve puan toplamı kodla sabit.</p></div>
@@ -159,21 +159,21 @@ tr.hands td { background: var(--soft); }
 <section class="slide">
   <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
   <span class="timer">Adım 2 · Belgeleri indirin</span>
-  <h2>Dört dosya, aynı klasöre</h2>
+  <h2>Hepsi bu sitede</h2>
   <div class="grid2">
-    <div class="box"><h3>MEB'den</h3><p><b>Dersinizin programı</b> (tek PDF, bölmeyin)</p><p class="muted" style="font-size:22px;margin:0">mufredat.meb.gov.tr → Öğretim Programları → önce <b>TYMM</b> sekmeleri → dersiniz → İndir</p></div>
-    <div class="box"><h3>Bu siteden</h3><ul style="font-size:23px"><li>01_Maarif_Modeli_Ortak_Metin.pdf</li><li>ws_olustur.py</li><li>gem-talimat-sablon.txt</li></ul><p class="muted" style="font-size:20px;margin:10px 0 0">Öğretmen sayfası · 2. adım</p></div>
+    <div class="box"><h3>Dersinizin programı</h3><p><b>Genel bölüm</b> + <b>okuttuğunuz sınıflar</b></p><p class="muted" style="font-size:22px;margin:0">mufredat.meb.gov.tr → Öğretim Programları → önce <b>TYMM</b> sekmeleri → dersiniz → İndir</p></div>
+    <div class="box"><h3>Bu siteden</h3><ul style="font-size:23px"><li>Ortak Metin (2 parça)</li><li>ws_olustur.py</li><li>gem-talimat-sablon.txt</li></ul><p class="muted" style="font-size:20px;margin:10px 0 0">Öğretmen sayfası · 2. adım</p></div>
   </div>
 </section>
 
 <!-- 9 Hangi model -->
 <section class="slide">
   <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
-  <span class="timer">Adım 2 · Kontrol</span>
-  <h2>Programınız hangi model?</h2>
+  <span class="timer">Adım 2 · Neden parça parça?</span>
+  <h2>Gem büyük dosyanın başını okur</h2>
   <div class="grid2">
-    <div class="box"><h3>"Öğrenme çıktısı"</h3><p>Türkiye Yüzyılı Maarif Modeli programı. Süreç bileşenleri, öğrenme kanıtları.</p><p class="muted" style="margin:0">Her şey sayfadaki gibi.</p></div>
-    <div class="box"><h3>"Kazanım"</h3><p>Eski program. Kurulum aynı; talimat bunu tanır.</p><p class="muted" style="margin:0">Testte "öğrenme çıktısı" yerine "kazanım" deyin.</p></div>
+    <div class="box"><h3>Tek büyük PDF</h3><p>222 sayfalık programın yalnızca ilk yarısı okundu; 8. sınıf "programda yok" sanıldı.</p></div>
+    <div class="box"><h3>Bölünmüş dosyalar</h3><p>Genel bölüm + her sınıf ayrı dosya. Gem sınıfın dosyasının tamamını okur.</p><p class="muted" style="margin:0">Bir Gem'e en fazla 10 dosya.</p></div>
   </div>
 </section>
 
@@ -181,13 +181,12 @@ tr.hands td { background: var(--soft); }
 <section class="slide">
   <div class="brand"><img src="assets/amblem.png" alt="">TED BODRUM KOLEJİ</div>
   <span class="timer">Adım 3 · Talimatı uyarlayın</span>
-  <h2>Yedi alan, köşeli parantezli</h2>
+  <h2>Altı alan, köşeli parantezli</h2>
   <table style="font-size:20px">
     <thead><tr><th>Alan</th><th>Fen</th><th>Matematik</th></tr></thead>
     <tr><td>[DERS ADI]</td><td>Fen Bilimleri</td><td>Matematik</td></tr>
     <tr><td>[KOD ÖNEKİ]</td><td>FB</td><td>MAT</td></tr>
     <tr><td>[SINIFLAR]</td><td>3–8</td><td>5–8</td></tr>
-    <tr><td>[PROGRAM DOSYASI]</td><td colspan="2">İndirdiğiniz PDF'in tam adı</td></tr>
     <tr><td>[DOSYA ÖNEKİ]</td><td>fen</td><td>mat</td></tr>
     <tr><td>[AMAÇ ETİKETİ]</td><td>Gözlem Amacı</td><td>Etkinliğin Amacı</td></tr>
     <tr><td>[ÇALIŞMA KÂĞIDI BÖLÜMLERİ]</td><td>Ön Bilgi · İnceleme · Yorumlama</td><td>Ön Bilgi · Uygulama · Değerlendirme</td></tr>
@@ -223,7 +222,7 @@ tr.hands td { background: var(--soft); }
   <ol>
     <li><b>Ad:</b> Maarif Danışmanı – <i>dersiniz</i></li>
     <li><b>Talimatlar:</b> uyarladığınız metnin tamamını yapıştırın — <u>bir kez</u></li>
-    <li><b>Bilgi:</b> program PDF'i, Ortak Metin, ws_olustur.py</li>
+    <li><b>Bilgi:</b> genel bölüm, sınıf dosyalarınız, Ortak Metin (2), ws_olustur.py</li>
     <li><b>Kaydet</b></li>
   </ol>
   <p class="muted" style="margin-top:20px">Talimat dosyasını Bilgi'ye yüklemeyin; o zaten Talimatlar alanında.</p>
