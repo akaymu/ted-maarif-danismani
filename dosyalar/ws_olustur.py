@@ -5,11 +5,12 @@ Biçimi bu kod belirler; çağıran yalnızca İÇERİĞİ bir sözlük (spec) o
 
 KULLANIM (Gemini kod ortamında):
     import glob; exec(open(glob.glob('**/*ws_olustur*', recursive=True)[0], encoding='utf-8').read())
-    yol = olustur(spec)          # -> 'fen_ws_<konu>_vs1.docx'
+    yol = olustur(spec)          # -> '<on_ek>_ws_<konu>_vs1.docx'
 
 SPEC ÖRNEĞİ: ORNEK_SPEC değişkenine bakın. Alanlar:
   etkinlik_adi, egitim_yili, sinif ("5. Sınıf"), donem ("1. Dönem"), hafta ("12. Hafta"),
   unite ("3. Ünite / Canlıların Yapısına Yolculuk"), sube ("5/A-B"), toplam_puan (int),
+  ders (başlıkta, varsayılan "Fen Bilimleri"), on_ek (dosya adı öneki, varsayılan "fen"),
   amac_etiketi (varsayılan "Gözlem Amacı"), amac, malzemeler (liste), konu (dosya adı için kısa, ör. "hucre"),
   bolumler: [{"baslik": "Ön Bilgi", "ogeler": [OGE, ...]}, ...]
 OGE türleri (numaralar otomatik verilir: 1.1, 1.2 ...):
@@ -92,7 +93,7 @@ def _genislik(n, oran=None):
 def _govde(spec):
     g, puanlar, tablo_no = [], [], 0
     yil = spec.get("egitim_yili", "2025-2026")
-    g.append(_p(_run("Fen Bilimleri Performans Çalışması: ", b=True, sz=24) + _run(spec["etkinlik_adi"], b=True, sz=24),
+    g.append(_p(_run(f"{spec.get('ders', 'Fen Bilimleri')} Performans Çalışması: ", b=True, sz=24) + _run(spec["etkinlik_adi"], b=True, sz=24),
                 jc="center", after=60))
     alt = " · ".join(x for x in (f"{yil} Eğitim Öğretim Yılı", spec.get("sinif"), spec.get("donem"), spec.get("hafta")) if x)
     g.append(_p(_run(alt), jc="center", after=200))
@@ -145,7 +146,8 @@ def _konu(s):
 def olustur(spec, cikti=None):
     konu = _konu(spec.get("konu") or spec["etkinlik_adi"])
     ay_yil = spec.get("ay_yil") or datetime.date.today().strftime("%m/%Y")
-    cikti = cikti or f"fen_ws_{konu}_vs1.docx"
+    on_ek = _konu(spec.get("on_ek") or "fen")
+    cikti = cikti or f"{on_ek}_ws_{konu}_vs1.docx"
     zin = zipfile.ZipFile(io.BytesIO(base64.b64decode(SABLON_B64)))
     doc = zin.read("word/document.xml").decode("utf8")
     bas = doc[: doc.index("<w:body>") + len("<w:body>")]
@@ -157,7 +159,7 @@ def olustur(spec, cikti=None):
             if item.filename == "word/document.xml":
                 data = yeni.encode("utf8")
             elif item.filename == "word/footer2.xml":
-                data = data.replace(b"fen_ws_[konu]_vs1_[AA/YYYY]", f"fen_ws_{konu}_vs1_{ay_yil}".encode())
+                data = data.replace(b"fen_ws_[konu]_vs1_[AA/YYYY]", f"{on_ek}_ws_{konu}_vs1_{ay_yil}".encode())
             zout.writestr(item, data)
     return cikti
 
@@ -191,6 +193,15 @@ if __name__ == "__main__":  # öz-denetim
     assert "fen_ws_hucre_vs1_" in f and "[konu]" not in f
     assert d.count('w:val="3969"') == 1 and d.count('w:val="851"') == 1 and d.count('w:val="1985"') == 1
     assert "Tablo 1. Hiyerarşi Tablosu" in d and "2.2. " in d and "(15 puan)" in d
+    assert "Fen Bilimleri Performans Çalışması: " in d  # varsayılan korunur
+    y2 = olustur(dict(ORNEK_SPEC, ders="Türk Dili ve Edebiyatı", on_ek="tde", amac_etiketi="Etkinliğin Amacı"),
+                 os.path.join(tempfile.gettempdir(), "ws_test2.docx"))
+    assert os.path.basename(y2) == "ws_test2.docx"
+    z2 = zipfile.ZipFile(y2)
+    d2, f2 = z2.read("word/document.xml").decode(), z2.read("word/footer2.xml").decode()
+    assert "Türk Dili ve Edebiyatı Performans Çalışması: " in d2 and "Fen Bilimleri" not in d2
+    assert "Etkinliğin Amacı: " in d2
+    assert "tde_ws_hucre_vs1_" in f2 and "fen_ws" not in f2
     try:
         olustur(dict(ORNEK_SPEC, toplam_puan=40), os.path.join(tempfile.gettempdir(), "x.docx")); raise SystemExit("puan kontrolü çalışmadı")
     except ValueError:
