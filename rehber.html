@@ -32,12 +32,12 @@
 <main class="wrap">
   <p class="eyebrow">Rehber</p>
   <h1>Maarif Danışmanı nasıl çalışır?</h1>
-  <p class="lead">"Maarif Danışmanı – Fen Bilimleri", Gemini'da kurulmuş bir Gem'dir. Gem, kalıcı talimatı ve yüklü belgeleri olan özel bir Gemini sohbetidir. Öğretmen hiçbir belge yüklemeden soru sorar; Gem cevabı Maarif Modeli belgelerine dayandırır ve istenirse etkinliği okulun şablonunda Word dosyası olarak verir.</p>
+  <p class="lead">Maarif Danışmanı, her öğretmenin kendi dersi için Gemini'da kurduğu bir Gem'dir. Gem, kalıcı talimatı ve yüklü belgeleri olan özel bir Gemini sohbetidir. Kurulumdan sonra öğretmen hiçbir belge yüklemeden soru sorar; Gem cevabı Maarif Modeli belgelerine dayandırır ve istenirse etkinliği okulun şablonunda Word dosyası olarak verir.</p>
 
   <h2>Akış</h2>
   <div class="flow" role="list">
     <div role="listitem"><b>Öğretmen</b>Kısa bir istek yazar: "5.3.2 için…"</div>
-    <div role="listitem"><b>Gem talimatı</b>Kodu FB.5.3.2 olarak tanır, yalnızca 5. sınıf dosyasında arar</div>
+    <div role="listitem"><b>Gem talimatı</b>Kodu dersin önekiyle tanır (ör. MAT.5.3.2.), programda yalnızca 5. sınıf bölümünde arar</div>
     <div role="listitem"><b>Bilgi dosyaları</b>Program ve Ortak Metin'den birebir alıntı yapar, kaynağı yazar</div>
     <div role="listitem"><b>Çıktı</b>Cevap veya okul şablonunda .docx ve Öğretmen Notu</div>
   </div>
@@ -46,10 +46,9 @@
   <div class="tbl"><table>
     <thead><tr><th>Dosya</th><th>Ne işe yarar</th></tr></thead>
     <tbody>
-      <tr><td><span class="file">gem-talimat.txt</span></td><td>Kurallar: önce belgede bul sonra yaz, kodları birebir aktar, kaynak göster, eski programı ("kazanım") karıştırma, sınıf düzeyini aşma, sınırlılıklara uy, kendi önerini "[Genel öneri]" diye işaretle.</td></tr>
-      <tr><td><span class="file">00_Fen_Programi_Genel_Bolum…pdf</span></td><td>Programın genel yaklaşımı, ünite–çıktı sayısı–ders saati tablosu</td></tr>
+      <tr><td>Talimat (<a class="file" href="dosyalar/gem-talimat-sablon.txt" download>gem-talimat-sablon.txt</a>'den)</td><td>Kurallar: önce belgede bul sonra yaz, kodları birebir aktar, kaynak göster, program modelini (öğrenme çıktısı / kazanım) karıştırma, sınıf düzeyini aşma, sınırlılıklara uy, kendi önerini "[Genel öneri]" diye işaretle. Öğretmen yalnızca yedi alanı kendi dersine göre doldurur.</td></tr>
+      <tr><td>Dersin öğretim programı (MEB, tek PDF)</td><td>Genel yaklaşım, ünite–çıktı sayısı–ders saati tablosu ve her sınıfın bölümü. Gem sınıfı PDF'teki başlıktan bulur.</td></tr>
       <tr><td><span class="file">01_Maarif_Modeli_Ortak_Metin.pdf</span></td><td>Kavramsal beceriler, eğilimler, SDB, değerler, okuryazarlıklar, ölçme ilkeleri</td></tr>
-      <tr><td><span class="file">03 … 08_Fen_Programi_N_Sinif.pdf</span></td><td>Her sınıfın üniteleri ayrı dosyada. Böylece cevaplar doğru sınıftan gelir.</td></tr>
       <tr><td><span class="file">ws_olustur.py</span></td><td>Çalışma kâğıdı üreticisi. Okulun şablonu içinde. Gemini yalnızca içeriği yazar; logo, A4, Calibri, künye, kutu boyutları ve alt bilgiyi bu dosya belirler.</td></tr>
     </tbody>
   </table></div>
@@ -59,7 +58,7 @@
     <div><h3>Soru-cevap</h3><p>Öğrenme çıktısı, süreç bileşenleri, anahtar kavramlar, süre, öğrenme yaşantıları.</p><code>5.3.2 için ölçülebilir performansları listele.</code></div>
     <div><h3>Ders planı</h3><p>Künye, süreç bileşenleri, köprü kurma, dakika dakika akış, farklılaştırma, öğrenme kanıtları.</p><code>Bu çıktı için 2 ders saatlik ders planı hazırla.</code></div>
     <div><h3>Kontrol</h3><p>Hazırladığınız plan, etkinlik veya sınavı programa uygunluk açısından 1–5 puanlar ve 3 iyileştirme önerir.</p><code>Şu etkinliği programa göre kontrol et: …</code></div>
-    <div><h3>Çalışma kâğıdı</h3><p>Okulun şablonunda .docx dosyası ve sohbette Öğretmen Notu (cevap anahtarı, puanlama).</p><code>FB.7.4.2 için 2 ders saatlik çalışma kâğıdı hazırla…</code></div>
+    <div><h3>Çalışma kâğıdı</h3><p>Okulun şablonunda .docx dosyası ve sohbette Öğretmen Notu (cevap anahtarı, puanlama).</p><code>7.4.2 için 2 ders saatlik çalışma kâğıdı hazırla…</code></div>
   </div>
 
   <h2>Öğretmenin günlük dili, programın başlıkları</h2>
@@ -75,7 +74,7 @@
   </table></div>
 
   <h2>Neden Google AI Pro?</h2>
-  <p>Aynı Gem iki hesapta, aynı isteklerle test edildi (31 Ekim 2026):</p>
+  <p>Hazır Fen Gem'i iki hesapta, aynı isteklerle test edildi (31 Ekim 2026):</p>
   <div class="tbl"><table>
     <thead><tr><th>Test</th><th>Pro hesap</th><th>Pro olmayan hesap</th></tr></thead>
     <tbody>
@@ -90,11 +89,11 @@
   <div class="tbl"><table>
     <thead><tr><th>Şablondan, her seferinde aynı</th><th>Gem'in doldurduğu</th></tr></thead>
     <tbody>
-      <tr><td>Header'da logo, A4, kenar boşlukları, Calibri 11/12, 1,5 satır aralığı</td><td>Etkinlik adı, eğitim yılı, sınıf, dönem, hafta</td></tr>
+      <tr><td>Header'da logo, A4, kenar boşlukları, Calibri 11/12, 1,5 satır aralığı</td><td>Başlıktaki ders adı, etkinlik adı, eğitim yılı, sınıf, dönem, hafta</td></tr>
       <tr><td>Künye: Adı-Soyadı, No ve Tarih boş; Puan ___ / toplam</td><td>Ünite/Tema/Konu ve şube</td></tr>
-      <tr><td>Numaralı bölümler (madde işareti yok), kalın etiketler</td><td>Gözlem amacı, malzemeler, sorular, yönergeler, tablolar</td></tr>
+      <tr><td>Numaralı bölümler (madde işareti yok), kalın etiketler</td><td>Amaç (ör. "Gözlem Amacı", "Etkinliğin Amacı"), malzemeler, sorular, yönergeler, tablolar</td></tr>
       <tr><td>Cevap kutuları: küçük 1,5 cm, orta 3,5 cm, büyük 7 cm; tablo satırı 1,4 cm</td><td>Hangi soruya hangi kutu, puanlar (toplam kodla kontrol edilir)</td></tr>
-      <tr><td>Alt bilgi: solda sayfa numarası, sağda dosya adı</td><td>Dosya adı, örneğin <code>fen_ws_mercekler_vs1_11/2026</code></td></tr>
+      <tr><td>Alt bilgi: solda sayfa numarası, sağda dosya adı</td><td>Dosya adı, örneğin <code>mat_ws_kesirler_vs1_11/2026</code></td></tr>
     </tbody>
   </table></div>
 
@@ -103,17 +102,18 @@
     <li><strong>İçerik öğretmenin onayındadır.</strong> Biçim sabittir, içerik bir yapay zekâ modelinden gelir. Yazdırmadan önce okuyun. Kontrol listesi <a href="ogretmen.html">öğretmen talimatında</a>.</li>
     <li><strong>Gem belgelerde olmayanı bilmez.</strong> Bulamadığında "programda bulamadım" der. Kendi önerisini "[Genel öneri]" diye işaretler.</li>
     <li><strong>Öğrenci verisi girilmez.</strong> Ad, not, sağlık bilgisi yazılmaz.</li>
-    <li><strong>Gem'ler "beceriler"e dönüşüyor.</strong> Google, Gem'leri 17 Kasım 2026'dan itibaren "beceriler" (skills) yapısına taşıyor. Geçişten sonra Gem'in talimatı ve dosyaları kontrol edilmeli. <a href="sunucu.html#yedek">Yedek kurulum</a> sunucu sayfasında.</li>
-    <li><strong>Program güncellenirse</strong> yeni PDF'ler Gem'in bilgi bölümünde eskilerinin yerine yüklenir; talimatın değişmesi gerekmez.</li>
+    <li><strong>Gem'ler "beceriler"e dönüşüyor.</strong> Google, Gem'leri 17 Kasım 2026'dan itibaren "beceriler" (skills) yapısına taşıyor. Geçişten sonra Gem'in talimatı ve dosyaları kontrol edilmeli. Kurulum adımları <a href="ogretmen.html">öğretmen talimatında</a>; Gem bozulursa aynı adımlarla yeniden kurulur.</li>
+    <li><strong>Program güncellenirse</strong> yeni PDF Gem'in bilgi bölümünde eskisinin yerine yüklenir; dosya adı değiştiyse talimattaki program dosyası adı da güncellenir. Ders eski programdan Maarif programına geçtiyse talimatın değişmesi gerekmez.</li>
   </ol>
 
   <h2>Sık sorulanlar</h2>
   <details><summary>Belgeleri her sohbette yeniden yüklemem gerekir mi?</summary><p style="padding:0 14px">Hayır. Belgeler Gem'in içinde. Her yeni sohbette hazırdır.</p></details>
-  <details><summary>Gem'i kendi hesabıma kopyalayabilir miyim?</summary><p style="padding:0 14px">Gerek yok; paylaşılan bağlantı herkes için aynı Gem'i açar ve güncellemeler tek yerden yapılır. Kendi kopyanızı kurmak isterseniz dosyalar <a href="sunucu.html#yedek">sunucu sayfasında</a>.</p></details>
-  <details><summary>Sohbetlerimi başkaları görür mü?</summary><p style="padding:0 14px">Hayır. Paylaşılan bir Gem'le yaptığınız sohbetler yalnızca sizin hesabınızda görünür.</p></details>
-  <details><summary>Başka dersler için de yapılabilir mi?</summary><p style="padding:0 14px">Evet. Aynı yapı (talimat + o dersin programı + ws_olustur.py) başka bir ders için de kurulabilir. Talimattaki "fen" ifadeleri ve şablondaki ders adı değiştirilir.</p></details>
+  <details><summary>Hazır bir Gem yok mu, neden kendim kuruyorum?</summary><p style="padding:0 14px">Fen Bilimleri için <a href="https://gemini.google.com/gem/1J91IW7ghV2cMqy8UDze6Suy1BwKjvmki?usp=sharing" target="_blank" rel="noopener">hazır örnek bir Gem</a> var. Diğer dersler için herkes kendi dersinin programıyla kurar. Kendi kurduğunuz Gem'i istediğiniz zaman güncelleyebilir, gerekirse yeniden kurabilirsiniz.</p></details>
+  <details><summary>Sohbetlerimi başkaları görür mü?</summary><p style="padding:0 14px">Hayır. Kendi Gem'inizle ya da paylaşılan bir Gem'le yaptığınız sohbetler yalnızca sizin hesabınızda görünür.</p></details>
+  <details><summary>Dersim eski programda ("kazanım"), yine de kurabilir miyim?</summary><p style="padding:0 14px">Evet. Kurulum aynı; talimat programdaki terimi tanır ve kazanım kodlarıyla çalışır. Ayrıntı <a href="ogretmen.html#adim-2">öğretmen talimatının 2. adımında</a>.</p></details>
+  <details><summary>Gem'imi bir meslektaşımla paylaşabilir miyim?</summary><p style="padding:0 14px">Evet. Gem'ler'de Gem'inizin yanındaki menüden <strong>Paylaş → Bağlantıya sahip olan herkes → Görüntüleyen</strong>. Bağlantıyı alan kullanabilir ama değiştiremez.</p></details>
 
-  <footer class="site"><a href="./">Ana sayfa</a> · Kaynak belgeler: Türkiye Yüzyılı Maarif Modeli Öğretim Programları Ortak Metni; Fen Bilimleri Dersi Öğretim Programı (3–8. sınıflar); TED Bodrum Koleji Y/S Prosedür Şablonu.</footer>
+  <footer class="site"><a href="./">Ana sayfa</a> · Kaynak belgeler: Türkiye Yüzyılı Maarif Modeli Öğretim Programları Ortak Metni; her dersin MEB öğretim programı (mufredat.meb.gov.tr); TED Bodrum Koleji Y/S Prosedür Şablonu.</footer>
 </main>
 </body>
 </html>
